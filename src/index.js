@@ -8,7 +8,7 @@ import {
   start, // 开启方法
 } from "qiankun";
 import { BrowserRouter } from "react-router-dom";
-
+document.cookie="access-token=123456789"
 //  const router = createBrowserRouter([
 //   {
 //     path: "/",

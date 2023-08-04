@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Breadcrumb, Layout, Menu, theme, Image } from "antd";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 const { Header, Content, Footer } = Layout;
@@ -66,7 +66,7 @@ const App = () => {
           }}
         >
           {breadcrumbList.map((item, index) => {
-            if ((window.location.pathname === "/"))
+            if (window.location.pathname === "/")
               return <Breadcrumb.Item key={index}>Home</Breadcrumb.Item>;
             return (
               <Breadcrumb.Item key={index}>
@@ -83,6 +83,9 @@ const App = () => {
             background: colorBgContainer,
           }}
         >
+          {window.location.pathname === "/" && (
+            <Image src="https://gw.alipayobjects.com/zos/bmw-prod/8a74c1d3-16f3-4719-be63-15e467a68a24/km0cv8vn_w500_h500.png" />
+          )}
           <div id="container">{/* <Outlet /> */}</div>
         </div>
       </Content>
