@@ -41,6 +41,9 @@ const config: webpack.Configuration = {
         {
           from: 'public',
           to: 'assets',
+          globOptions: {
+            ignore: ["**/*.html"],
+          },
         },
       ],
     }),
