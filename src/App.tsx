@@ -3,7 +3,7 @@ import { Breadcrumb, Layout, Menu, theme, Image } from "antd";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import TimerView from "./components/Timer";
-import timer from './store/timer'
+import timer from "./store/timer";
 const { Header, Content, Footer } = Layout;
 
 const MICROAPPS = [
@@ -96,7 +96,7 @@ const App = () => {
           textAlign: "center",
         }}
       >
-        <TimerView timer={timer}/>
+        <TimerView timer={timer} />
         <div>powered by shaokaodashi</div>
       </Footer>
     </Layout>
