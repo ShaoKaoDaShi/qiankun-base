@@ -31,6 +31,10 @@ const config: webpack.Configuration = {
         exclude: /node_modules/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [
@@ -62,6 +66,7 @@ export default (env, argv) => {
   if (argv.mode === "development") {
     config.devtool="source-map";
     config.devServer = {
+      historyApiFallback: true,
       // compress: true,
       static: {
         directory: path.join(__dirname, "public"),

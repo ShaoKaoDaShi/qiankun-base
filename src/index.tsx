@@ -1,4 +1,4 @@
-import timer from './store/timer'
+import timer from "./store/timer";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -7,15 +7,25 @@ import {
   registerMicroApps, // 注册应用
   start,
 } from "qiankun";
-import { BrowserRouter } from "react-router-dom";
-import './request/index'
-
-document.cookie="access-token=123456789"
+import { BrowserRouter, Route } from "react-router-dom";
+import Cookies from "js-cookie";
+import "./request/index";
+import Login from "./Pages/Login";
+import myWindow from "./store/window";
+import auth from "./auth/auth";
+if (!Cookies.get("access-token")) {
+  Cookies.set("access-token", "123456789");
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App></App>
+    <Route exact path="/" component={auth(App)} />
+    <Route path="/home" component={auth(App)} />
+    <Route
+      path="/login"
+      component={() => <Login myWindow={myWindow} />}
+    />
   </BrowserRouter>
 );
 
@@ -32,7 +42,7 @@ const apps = [
     entry: "//localhost:8081",
     container: "#container",
     activeRule: "/react",
-    props:{ timer: timer }
+    props: { timer: timer },
   },
 ];
 registerMicroApps(apps);

@@ -51,10 +51,6 @@ const App = () => {
               label: Label,
             };
           })}
-          onClick={({ key }) => {
-            // history.push(key==="home" ?"":key)
-            // history.replace(key==="home" ?"":key)
-          }}
         />
       </Header>
       <Content
@@ -85,9 +81,10 @@ const App = () => {
             background: colorBgContainer,
           }}
         >
-          {window.location.pathname === "/" && (
+          {window.location.pathname ==="/"||window.location.pathname ==="/home" && (
             <Image src="https://gw.alipayobjects.com/zos/bmw-prod/8a74c1d3-16f3-4719-be63-15e467a68a24/km0cv8vn_w500_h500.png" />
           )}
+
           <div id="container"></div>
         </div>
       </Content>
