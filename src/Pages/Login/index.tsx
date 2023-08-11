@@ -1,26 +1,28 @@
-import img from "../../Happiness-amico.svg";
+import BackImage from "./Image upload-cuate.svg";
 import React from "react";
-import { Image,Button} from "antd";
+import { Image, Button, Card } from "antd";
+import styles from "./index.module.css";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
-const LoginPage = observer<{ myWindow:{innerWidth: number; innerHeight: number} }>(
-  ({myWindow}) => {
+import LoginForm from "../../components/LoginForm";
+const LoginPage = observer<{
+  myWindow: { innerWidth: number; innerHeight: number };
+}>(({ myWindow }) => {
   const style = {
     width: myWindow.innerWidth + "px",
     height: myWindow.innerHeight + "px",
-    display:"flex"
-  }
-    return (
-      <div
-        style={style}
-      >
-        <Image src={img} style={{ flex: 1 }} />123
-        <div>
-        <Link to={'/home'}><Button>home</Button></Link>
-        </div>
-      </div>
-    );
-  }
-);
+    // position: "absolute",
+  };
+
+  return (
+    <div style={style} className={styles.container}>
+      <BackImage width={myWindow.innerWidth} height={myWindow.innerHeight} />
+
+      <Card className={styles.loginForm} hoverable>
+        <LoginForm />
+      </Card>
+    </div>
+  );
+});
 
 export default LoginPage;

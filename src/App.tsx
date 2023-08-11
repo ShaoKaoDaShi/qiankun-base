@@ -1,15 +1,17 @@
 import React from "react";
 import { Breadcrumb, Layout, Menu, theme, Image } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import TimerView from "./components/Timer";
 import timer from "./store/timer";
+import * as path from 'path';
 const { Header, Content, Footer } = Layout;
 
 const MICROAPPS = [
   { key: "/home", label: "主应用" },
   { key: "/react", label: "react应用" },
   { key: "/vue", label: "vue应用" },
+  { key: "/login", label: "登录" },
 ];
 
 const App = () => {
@@ -81,11 +83,12 @@ const App = () => {
             background: colorBgContainer,
           }}
         >
-          {window.location.pathname ==="/"||window.location.pathname ==="/home" && (
+          {(window.location.pathname === "/" ||
+            window.location.pathname === "/home") && (
             <Image src="https://gw.alipayobjects.com/zos/bmw-prod/8a74c1d3-16f3-4719-be63-15e467a68a24/km0cv8vn_w500_h500.png" />
           )}
+          <div id="container">R</div>
 
-          <div id="container"></div>
         </div>
       </Content>
       <Footer

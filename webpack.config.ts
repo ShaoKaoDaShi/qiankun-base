@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 // in case you run into any typescript error when configuring `devServer`
 import "webpack-dev-server";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+import { BundleStatsWebpackPlugin } from "bundle-stats-webpack-plugin";
 
 const config: webpack.Configuration = {
   mode: "development",
@@ -12,8 +12,8 @@ const config: webpack.Configuration = {
 
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: '[name].[contenthash].js',
-    clean: true
+    filename: "[name].[contenthash].js",
+    clean: true,
   },
   module: {
     rules: [
@@ -28,12 +28,19 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          { loader: "css-loader", },
+        ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: [{ loader: "@svgr/webpack", options: { icon: true } }],
       },
     ],
   },
@@ -43,8 +50,8 @@ const config: webpack.Configuration = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'public',
-          to: 'assets',
+          from: "public",
+          to: "assets",
           globOptions: {
             ignore: ["**/*.html"],
           },
@@ -54,20 +61,18 @@ const config: webpack.Configuration = {
     new BundleStatsWebpackPlugin(),
   ],
   resolve: {
-    extensions: ['.js','.ts','.jsx','.tsx'],
+    extensions: [".js", ".ts", ".jsx", ".tsx"],
   },
-
 };
 
 // export default config;
 
 export default (env, argv) => {
-
   if (argv.mode === "development") {
-    config.devtool="source-map";
+    config.devtool = "eval-source-map";
     config.devServer = {
       historyApiFallback: true,
-      // compress: true,
+      compress: true,
       static: {
         directory: path.join(__dirname, "public"),
       },
@@ -100,18 +105,18 @@ export default (env, argv) => {
   if (argv.mode === "production") {
     config.mode = "production";
     config.optimization = {
-      moduleIds: 'deterministic',
-      runtimeChunk: 'single',
+      moduleIds: "deterministic",
+      runtimeChunk: "single",
       splitChunks: {
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
+            name: "vendors",
+            chunks: "all",
           },
         },
       },
-    }
+    };
   }
 
   return config;

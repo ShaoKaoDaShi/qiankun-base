@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#nprogress .bar{
+  /* background-color: red ; */
+  background-color: var(--jjext-color-brand) !important;
+
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px var(--jjext-color-brand), 0 0 5px var(--jjext-color-brand) !important;
+}
+#nprogress .spinner-icon {
+  border-top-color: var(--jjext-color-brand) !important;
+  border-left-color: var(--jjext-color-brand) !important;
+}
