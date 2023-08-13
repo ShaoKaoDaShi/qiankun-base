@@ -1,10 +1,14 @@
 import React from "react";
-import { Breadcrumb, Layout, Menu, theme, Image } from "antd";
+import { Breadcrumb, Layout, Menu, theme, Image,Button } from "antd";
 import { Link, Route } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import TimerView from "./components/Timer";
 import timer from "./store/timer";
-import * as path from 'path';
+import BaseTabs from "./components/BaseTabs";
+import tabStore from "./store/tabs";
+import LoginPage from "./Pages/Login";
+
+import * as path from "path";
 const { Header, Content, Footer } = Layout;
 
 const MICROAPPS = [
@@ -46,7 +50,10 @@ const App = () => {
           defaultSelectedKeys={["home"]}
           items={MICROAPPS.map((_) => {
             const key = _.key === "/home" ? "/" : _.key;
-            const Label = <Link to={key}>{_.label}</Link>;
+            // const Label = <Link to={key}>{_.label}</Link>;
+            const Label = <Button onClick={(_)=>{
+                tabStore.addOneTab({label:'router add', children:<LoginPage/>, key:'router add '+tabStore.tabsArray.length+1})
+            }}>{_.label} </Button>
             // const Label = _.label;
             return {
               key: _.key,
@@ -55,6 +62,7 @@ const App = () => {
           })}
         />
       </Header>
+
       <Content
         style={{
           padding: "0 50px",
@@ -77,6 +85,8 @@ const App = () => {
             );
           })}
         </Breadcrumb>
+        <BaseTabs tabStore={tabStore} />
+
         <div
           className="site-layout-content"
           style={{
@@ -88,7 +98,6 @@ const App = () => {
             <Image src="https://gw.alipayobjects.com/zos/bmw-prod/8a74c1d3-16f3-4719-be63-15e467a68a24/km0cv8vn_w500_h500.png" />
           )}
           <div id="container">R</div>
-
         </div>
       </Content>
       <Footer

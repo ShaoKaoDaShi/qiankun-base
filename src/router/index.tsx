@@ -11,6 +11,7 @@ import App from "../App";
 import LoginPage from "../Pages/Login";
 import myWindow from "../store/window";
 import NProgress from "../components/NProgress";
+import PageSkeleton from "../components/PageSkeleton";
 
 const Router = () => {
   const location = useLocation();
@@ -24,13 +25,13 @@ const Router = () => {
   }, []);
   useEffect(() => {
     NProgress.done();
-  }, [location]);
+  });
 
   return (
     <>
       <Switch>
-        <Route exact path="/" component={auth(App)} />
-        <Route exact path="/home" component={auth(App)} />
+        <Route exact path="/" component={auth(PageSkeleton)} />
+        <Route exact path="/home" component={auth(PageSkeleton)} />
         <Route exact path="/react" component={auth(App)} />
         <Route exact path="/vue" component={auth(App)} />
       </Switch>

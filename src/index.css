@@ -24,3 +24,9 @@ code {
   border-top-color: var(--jjext-color-brand) !important;
   border-left-color: var(--jjext-color-brand) !important;
 }
+
+html,body,#root{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}

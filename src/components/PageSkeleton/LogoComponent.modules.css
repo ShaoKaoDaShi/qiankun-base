@@ -1,0 +1,34 @@
+.logo {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 13px;
+  /* margin-bottom: 10px; */
+  height: 64px;
+}
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+.logo span {
+  margin-left: 4px;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: 22px;
+  width: 130px;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.logo .logoText {
+  flex: auto;
+}
+.logo .logoSpan {
+  width: 0px ;
+  overflow: hidden;
+}
