@@ -15,6 +15,7 @@
   /* box-shadow: rgba(71, 80, 89, 0.15) 0px 5px 20px; */
 }
 .work-station-content div {
+  /* 行高为0， 消除inline dom元素传递给父元素的下边距问题 */
   line-height: 0;
 }
 .work-station-content > div {
@@ -41,38 +42,4 @@
 }
 
 .logoContainer {
-}
-.logo {
-  display: flex;
-  flex: auto;
-  justify-content: center;
-  align-items: center;
-  padding: 4px 13px;
-  /* margin-bottom: 10px; */
-  height: 64px;
-}
-.logo img {
-  width: 40px;
-  height: 40px;
-}
-.logo span {
-  margin-left: 4px;
-  color: aliceblue;
-  font-weight: bold;
-  font-size: 22px;
-  width: 130px;
-  transition: all 0.2s ease;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.logo .logoText {
-  flex: auto;
-}
-.logospan {
-  display: none;
-  overflow: hidden;
 }
