@@ -5,9 +5,7 @@ import {
 } from "@ant-design/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import {
-    Menu as AntMenu,
-} from "antd";
+import { Menu as AntMenu } from "antd";
 const Menu = () => {
     const getSelectedKey = () => {
         const key = window.location.pathname
@@ -20,11 +18,17 @@ const Menu = () => {
     async function historyGo(key: string) {
         history.push(`/${key}`);
     }
+    const getOpenKeys = () => {
+        const keys = window.location.pathname.split("/").filter((path) => path);
+        keys.pop();
+        return keys;
+    };
     return (
         <AntMenu
             theme="dark"
             mode="inline"
             defaultSelectedKeys={["home"]}
+            defaultOpenKeys={getOpenKeys()}
             selectedKeys={[getSelectedKey()]}
             onClick={(info) => {
                 historyGo(info.key.replace("-", "/"));
@@ -56,6 +60,18 @@ const Menu = () => {
                     key: "vue",
                     icon: <UploadOutlined />,
                     label: "vue子应用",
+                    children: [
+                        {
+                            key: "vue-bar",
+                            icon: <UserOutlined />,
+                            label: "vue bar",
+                        },
+                        {
+                            key: "vue-foo",
+                            icon: <UserOutlined />,
+                            label: "vue foo",
+                        },
+                    ],
                 },
                 {
                     key: "dashboard",
@@ -66,4 +82,4 @@ const Menu = () => {
         />
     );
 };
-export default Menu
+export default Menu;
