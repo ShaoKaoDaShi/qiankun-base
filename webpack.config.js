@@ -67,7 +67,7 @@ const config = {
             patterns: [
                 {
                     from: "public",
-                    to: "assets",
+                    to: "./",
                     globOptions: {
                         ignore: ["**/*.html"],
                     },
