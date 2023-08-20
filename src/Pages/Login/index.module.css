@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  flex: auto;
 }
 
 .loginForm{
@@ -9,4 +10,8 @@
   top:40%;
   right: 30%;
   border: 1px solid #ddd;
+}
+.backImage{
+  flex: 1;
+
 }

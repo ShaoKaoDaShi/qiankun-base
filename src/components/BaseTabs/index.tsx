@@ -15,10 +15,6 @@ const BaseTabs = observer<{ tabStore: TabsStore }>(({ tabStore }) => {
     const go = useHistoryGo();
     const tabsArray = toJS(tabStore.tabsArray);
 
-    // const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
-    // const [items, setItems] = useState(defaultPanes);
-    // const newTabIndex = useRef(0);
-
     const onChange = (key: string) => {
         // setActiveKey(key);
         tabStore.setActiveKey(key);

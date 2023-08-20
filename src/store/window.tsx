@@ -6,7 +6,6 @@ class MyWindow {
       this.innerWidth = width
       this.innerHeight=height
       makeAutoObservable(this)
-
     }
 
     resize(width,height) {
@@ -17,8 +16,6 @@ class MyWindow {
 
 const myWindow = new MyWindow(window.innerWidth, window.innerHeight)
 window.addEventListener("resize", () =>{
-  console.log(
-  'resize-----')
   myWindow.resize(window.innerWidth, window.innerHeight)
 })
 

@@ -16,6 +16,7 @@ import { observer } from "mobx-react-lite";
 import { useHistory, Link } from "react-router-dom";
 import styles from "./index.modules.css";
 import logo from "./logo.png";
+import { loadMicroApp } from "qiankun";
 
 const PageSkeleton = observer<{ tabStore: TabsStore }>(({ tabStore }) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -47,22 +48,29 @@ const PageSkeleton = observer<{ tabStore: TabsStore }>(({ tabStore }) => {
                     defaultSelectedKeys={["home"]}
                     selectedKeys={[tabStore.activeKey]}
                     onClick={(info) => {
+                      const keyPath = info.keyPath
+                      const key =keyPath.reverse().join('/')
                         if (!tabStore.isTabExist(info.key)) {
                             tabStore.addOneTab(
                                 tabFactory({
-                                    key: info.key,
+                                    key: key,
                                     label: (
                                         info.domEvent.target as HTMLSpanElement
                                     ).innerText,
                                     children: (
-                                        <div id={info.key}>{info.key}</div>
+                                        <div id={info.key}>{key}</div>
                                     ),
                                 })
                             );
                         }
-                        tabStore.setActiveKey(info.key);
-                        historyGo(info.key);
+                        tabStore.setActiveKey(key);
+                        historyGo(key);
                         console.log(info);
+                        // loadMicroApp(    {
+                        //   name: "react-web-app",
+                        //   entry: "//localhost:8081",
+                        //   container: "#reactLogo",
+                        // })
                     }}
                     items={[
                         {
@@ -74,12 +82,23 @@ const PageSkeleton = observer<{ tabStore: TabsStore }>(({ tabStore }) => {
                             key: "react",
                             icon: <VideoCameraOutlined />,
                             label: "react子应用",
+                            children:[{
+                              key:"reactLogo",
+                              icon: <UserOutlined />,
+                              label: "react logo"
+
+                            }]
                         },
                         {
                             key: "vue",
                             icon: <UploadOutlined />,
                             label: "vue子应用",
                         },
+                        {
+                          key: "dashboard",
+                          icon: <UploadOutlined />,
+                          label: "dashboard",
+                      },
                     ]}
                 />
             </Sider>

@@ -22,20 +22,18 @@ class TabsStore {
             closeIcon: false,
         });
         const initArr: Tab[] = [homeTab];
-        const initActiveKey = pathName.replace(/^\//, "");
+        const initActiveKey = pathName
         this.activeKey = initActiveKey || routeList[0].key;
-        if (initActiveKey !== "login" && this.activeKey !== "home") {
-            // if (this.activeKey !== "home") {
+        if (initActiveKey !== "/login" && this.activeKey !== "/home") {
             const tabActive = routeList.find((tab) => {
                 return initActiveKey === tab.key;
             });
             const tabItem = tabFactory({
-                label: tabActive.label,
-                children: tabActive.el,
-                key: tabActive.key,
+                label: tabActive?.label,
+                children: tabActive?.el,
+                key: tabActive?.key,
             });
             initArr.push(tabItem);
-            // }
         }
         this.tabsArray = initArr;
         makeAutoObservable(this);

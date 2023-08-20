@@ -21,7 +21,7 @@
     "react-router-dom": "^5.3.4"
   },
   "scripts": {
-    "start": "webpack serve --mode=development --config=./webpack.config.ts",
+    "start": "webpack-dev-server --mode=development --config=./webpack.config.js",
     "build": " webpack --mode=production"
   },
   "browserslist": {
@@ -60,6 +60,7 @@
     "eslint-plugin-react": "^7.33.1",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
+    "react-dev-utils": "^12.0.1",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",
