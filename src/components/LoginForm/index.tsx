@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import request from "../../request/index";
 import { useHistory } from "react-router-dom";
+import menuStore from "../../store/menuStore";
 type FieldType = {
     username?: string;
     password?: string;
@@ -16,8 +17,9 @@ const LoginForm: React.FC = () => {
     const history = useHistory();
     const onFinish = (values: FieldType) => {
         console.log("Success:", values);
-        request.post("/api/login", values).then((response) => {
-            response.status == 200;
+        request.post("/api/login", values).then(({data}) => {
+            const {menuList =[]} = data
+            menuStore.setMenuList(menuList)
             history.push("/home");
         });
     };

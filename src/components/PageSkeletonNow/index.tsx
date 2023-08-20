@@ -11,6 +11,9 @@ import myTimer from "../../store/timer";
 import Menu from "./Menu";
 import Header from "./Header";
 import Dashboard from "../../Pages/Dashboard";
+import menuStore from "../../store/menuStore";
+import request from "../../request";
+import Cookies from "js-cookie";
 const PageSkeleton = () => {
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -20,14 +23,19 @@ const PageSkeleton = () => {
     const isLoginPath = () => {
         return window.location.pathname === "/login";
     };
-
+    if(menuStore.initBool===false){
+        const username = Cookies.get('username');
+        request.post("/api/menuList",{"username":username}).then(({data})=>{
+            menuStore.setMenuList(data?.menuList||[])
+        })
+    }
     return (
         <Layout style={{ flex: "auto" }}>
             {isLoginPath() || (
                 <>
                     <Sider trigger={null} collapsible collapsed={collapsed}>
                         <LogoComponent collapsed={collapsed} />
-                        <Menu />
+                        <Menu menuStore={menuStore} />
                     </Sider>
                     <Layout>
                         <Header

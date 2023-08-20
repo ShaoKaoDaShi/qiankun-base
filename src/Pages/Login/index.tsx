@@ -8,13 +8,10 @@ import myWindowStore from "../../store/window";
 const LoginPage = observer<{
     myWindow?: { innerWidth: number; innerHeight: number };
 }>(({ myWindow = myWindowStore }) => {
-    const style = {
-        // width: myWindow.innerWidth + "px",
-        // height: myWindow.innerHeight + "px",
-    };
+
 
     return (
-        <div style={style} className={styles.container}>
+        <div className={styles.container}>
             <BackImage
                 width={myWindow.innerWidth}
                 height={myWindow.innerHeight}

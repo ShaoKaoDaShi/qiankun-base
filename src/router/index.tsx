@@ -5,19 +5,24 @@ import LoginPage from "../Pages/Login";
 import myWindow from "../store/window";
 import NProgress from "../components/NProgress";
 import PageSkeletonNow from "../components/PageSkeletonNow";
+import menuStore from "../store/menuStore";
+import request from '../request/index'
 
 const Router = () => {
+    const location = useLocation();
     const history = useHistory();
     const token = Cookies.get("access_token");
+    // if(menuStore.initBool===false){
+    //     request.post("/api/menuList",{"username":"vue"}).then(({data})=>{
+    //         menuStore.setMenuList(data?.menuList||[])
+    //     })
+    // }
     if (!token && window.location.pathname !== "/login") {
         history.push("/login");
     }
     useEffect(() => {
-        const unListen = history.listen(() => {
-            NProgress.start();
-        });
-        return unListen;
-    }, []);
+        NProgress.start();
+    }, [location]);
     useEffect(() => {
         NProgress.done();
     });
