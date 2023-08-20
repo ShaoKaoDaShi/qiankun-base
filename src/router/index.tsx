@@ -1,24 +1,18 @@
 import React, { useEffect } from "react";
-import {
-    BrowserRouter,
-    useLocation,
-    Route,
-    useHistory,
-    Switch,
-    Redirect,
-} from "react-router-dom";
-import auth from "../auth/auth";
+import { useLocation, Route, useHistory, Redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 import LoginPage from "../Pages/Login";
 import myWindow from "../store/window";
 import NProgress from "../components/NProgress";
 import PageSkeletonNow from "../components/PageSkeletonNow";
-import tabStore from "../store/tabs";
 
 const Router = () => {
-    const location = useLocation();
     const history = useHistory();
+    const token = Cookies.get("access_token");
+    if (!token && window.location.pathname !== "/login") {
+        history.push("/login");
+    }
     useEffect(() => {
-        console.log("🚀 ~ file: index.tsx:11 ~ Router ~ location:", location);
         const unListen = history.listen(() => {
             NProgress.start();
         });
@@ -33,7 +27,8 @@ const Router = () => {
             <Route exact path="/">
                 <Redirect to="/home" />
             </Route>
-            <Route path={["/"]} render={() => <PageSkeletonNow />} />
+            <Route path={["/"]} component={PageSkeletonNow} />
+
             <Route
                 path="/login"
                 component={() => <LoginPage myWindow={myWindow} />}

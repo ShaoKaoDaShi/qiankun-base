@@ -2,14 +2,12 @@ import React from "react";
 import Cookies from "js-cookie";
 import LoginPage from "../Pages/Login";
 import myWindow from "../store/window";
+import { Redirect } from "react-router-dom";
 const auth = (el: React.FC) => {
-  console.log(
-    Cookies.get("access-token") + "123123awerfeqwr" + document.cookie
-  );
   if (Cookies.get("access-token")) return el;
 
   const h: React.FC = () => {
-    return <LoginPage myWindow={myWindow} />;
+    return <Redirect to="/login" />;
   };
   return h;
 };
