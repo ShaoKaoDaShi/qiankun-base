@@ -6,6 +6,7 @@ import "./router/registMicroApps";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./request/index";
 import Router from "./router";
+import './rrweb'
 
 
 
@@ -17,4 +18,4 @@ root.render(
     </BrowserRouter>
 );
 
-start();
+// start();

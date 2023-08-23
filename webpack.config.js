@@ -99,10 +99,11 @@ module.exports = (env, argv) => {
             },
             client: {
                 // logging: "info",
-                overlay: {
-                    errors: true,
-                    warnings: false,
-                },
+                // overlay: {
+                //     errors: true,
+                //     warnings: false,
+                // },
+                overlay:false
             },
             proxy: {
                 "/api": {

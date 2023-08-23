@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Layout, theme } from "antd";
+import { Button, Layout, theme } from "antd";
 const { Sider, Content, Footer } = Layout;
 import LogoComponent from "./LogoComponent";
 import { Route } from "react-router-dom";
@@ -14,6 +14,8 @@ import Dashboard from "../../Pages/Dashboard";
 import menuStore from "../../store/menuStore";
 import request from "../../request";
 import Cookies from "js-cookie";
+import Rrweb from "../../Pages/Rrweb";
+
 const PageSkeleton = () => {
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -48,11 +50,12 @@ const PageSkeleton = () => {
                                 padding: 24,
                                 minHeight: 280,
                                 background: colorBgContainer,
-                                overflow: "hidden",
+                                overflow: "scroll",
                             }}
                         >
                             <Route path="/home" component={Home} />
                             <Route path="/dashboard" component={Dashboard} />
+                            <Route path="/rrweb" component={Rrweb} />
                             <div id="container"></div>
                         </Content>
                         <Footer

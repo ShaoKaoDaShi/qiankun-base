@@ -54,5 +54,10 @@ const menuList = [
       icon: <UploadOutlined />,
       label: "dashboard",
   },
+  {
+    key: "rrweb",
+    icon: <UploadOutlined />,
+    label: "rrweb",
+},
 ]
 export default menuList
