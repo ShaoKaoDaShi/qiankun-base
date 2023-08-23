@@ -18,4 +18,7 @@ root.render(
     </BrowserRouter>
 );
 
-// start();
+if(!process.env.not_qiankun){
+    start();
+}
+

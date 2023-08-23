@@ -4,7 +4,7 @@ import { eventWithTime } from "@rrweb/types";
 import * as _ from "lodash";
 import type { RrwebError } from "./types";
 
-const eventsMatrix:eventWithTime[][] = [[],[],[]];
+const eventsMatrix:eventWithTime[][] = [[],[]];
 
 rrweb.record({
     emit(event, isCheckout) {
@@ -22,10 +22,13 @@ rrweb.record({
 // send last two events array to the backend
 window.addEventListener("error",function (e) {
     const len = eventsMatrix.length;
+    // 获取最近10秒内发生的事件
     let events = eventsMatrix[len - 2]
         ? eventsMatrix[len - 2].concat(eventsMatrix[len - 1])
         : eventsMatrix[len - 1];
+
     if(events.length>600){
+        //防止发送过多的无效数据
         events = events.slice(0,300).concat(events.slice(events.length-301,events.length))
     }
     const body:RrwebError = { errorInfo:{message:e.message, stack:e.error.stack} ,events };

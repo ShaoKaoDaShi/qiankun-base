@@ -7,8 +7,8 @@
 // import { BundleStatsWebpackPlugin } from "bundle-stats-webpack-plugin";
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
+const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
     mode: "development",
@@ -48,6 +48,7 @@ const config = {
     },
     plugins: [
         new webpack.ProgressPlugin(),
+
         new HtmlWebpackPlugin({
             inject: true,
             filename: "index.html",
@@ -60,10 +61,10 @@ const config = {
             //     collapseWhitespace: true,
             // },
             templateParameters: {
-                'PUBLIC_URL': '/'
-              },
+                PUBLIC_URL: "/",
+            },
         }),
-          new CopyWebpackPlugin({
+        new CopyWebpackPlugin({
             patterns: [
                 {
                     from: "public",
@@ -84,6 +85,12 @@ const config = {
 // export default config;
 
 module.exports = (env, argv) => {
+    config.plugins.push(
+        new webpack.DefinePlugin({
+            "haha":true,
+            "process.env.not_qiankun": process.env.BASE_ENV,
+        })
+    );
     if (argv.mode === "development") {
         config.devtool = "eval-source-map";
         config.devServer = {
@@ -103,7 +110,7 @@ module.exports = (env, argv) => {
                 //     errors: true,
                 //     warnings: false,
                 // },
-                overlay:false
+                overlay: false,
             },
             proxy: {
                 "/api": {
