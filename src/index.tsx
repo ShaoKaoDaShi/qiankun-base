@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./request/index";
 import Router from "./router";
 import './rrweb'
+// import './sentry'
 
 
 

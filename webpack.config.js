@@ -128,6 +128,7 @@ module.exports = (env, argv) => {
     }
     if (argv.mode === "production") {
         config.mode = "production";
+        config.devtool = "source-map";
         config.optimization = {
             moduleIds: "deterministic",
             runtimeChunk: "single",
