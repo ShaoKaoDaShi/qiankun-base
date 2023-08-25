@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useLocation, Route, useHistory, Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
-import LoginPage from "../Pages/Login";
+// import LoginPage from "../Pages/Login";
 import myWindow from "../store/window";
 import NProgress from "../components/NProgress";
-import PageSkeletonNow from "../components/PageSkeletonNow";
+// import PageSkeletonNow from "../components/PageSkeletonNow";
 import menuStore from "../store/menuStore";
-import request from '../request/index'
+import request from "../request/index";
+const PageSkeletonNow = lazy(() => import("../components/PageSkeletonNow"));
+const LoginPage = lazy(() => import("../Pages/Login"));
 
 const Router = () => {
     const location = useLocation();
@@ -29,15 +31,17 @@ const Router = () => {
 
     return (
         <>
-            <Route exact path="/">
-                <Redirect to="/home" />
-            </Route>
-            <Route path={["/"]} component={PageSkeletonNow} />
+            <Suspense fallback={<div>loading ...</div>}>
+                <Route exact path="/">
+                    <Redirect to="/home" />
+                </Route>
+                <Route path={["/"]} component={PageSkeletonNow} />
 
-            <Route
-                path="/login"
-                component={() => <LoginPage myWindow={myWindow} />}
-            />
+                <Route
+                    path="/login"
+                    component={() => <LoginPage myWindow={myWindow} />}
+                />
+            </Suspense>
         </>
     );
 };

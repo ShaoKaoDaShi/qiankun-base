@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import * as rrweb from 'rrweb';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,5 +16,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     }
-  }
+  },
+
+  build:{rollupOptions:{output:{manualChunks:{
+    lodash: ['lodash'],
+    rrweb: ['rrweb'],
+  }}}}
 })
