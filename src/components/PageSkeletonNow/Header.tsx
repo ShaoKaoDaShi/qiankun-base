@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import React from "react";
 const { Header: AntHeader } = Layout;
-import styles from "./index.modules.css";
+import styles from "./index.module.css";
 import logo from "./logo.png";
 interface PropsType {
     collapsed: boolean;

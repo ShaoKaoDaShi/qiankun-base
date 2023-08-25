@@ -12,7 +12,7 @@ let updateNum = 0;
 const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
     const [list, setList] = useState(menuList);
     const [selectedKey, setSelectedKey] = useState("");
-    const location: H.Location = useLocation();
+    const location = useLocation();
     const history = useHistory();
     useEffect(() => {
         console.log(++updateNum, menuStore.initBool);

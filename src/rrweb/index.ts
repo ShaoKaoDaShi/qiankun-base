@@ -16,7 +16,19 @@ rrweb.record({
         const lastEvents = eventsMatrix[eventsMatrix.length - 1];
         lastEvents.push(event);
     },
-    checkoutEveryNms: 5 * 1000, // checkout every 5 minutes
+    sampling: {
+        // do not record mouse movement
+        mousemove: 200,
+        // do not record mouse interaction
+        mouseInteraction: false,
+        // set the interval of scrolling event
+        scroll: 150, // do not emit twice in 150ms
+        // set the interval of media interaction event
+        media: 800,
+        // set the timing of record input
+        input: 'last' // When input mulitple characters, only record the final input
+      },
+    checkoutEveryNms: 3 * 1000, // checkout every 5 minutes
 });
 
 // send last two events array to the backend
@@ -27,9 +39,10 @@ window.addEventListener("error",function (e) {
         ? eventsMatrix[len - 2].concat(eventsMatrix[len - 1])
         : eventsMatrix[len - 1];
 
-    if(events.length>600){
+    if(events.length>100){
         //防止发送过多的无效数据
-        events = events.slice(0,300).concat(events.slice(events.length-301,events.length))
+        events = events.slice(events.length-100)
+        // events = events.slice(0,300).concat(events.slice(events.length-301,events.length))
     }
     const body:RrwebError = { errorInfo:{message:e.message, stack:e.error.stack} ,events };
     request.post(

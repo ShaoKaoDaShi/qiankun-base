@@ -25,9 +25,14 @@
   },
   "scripts": {
     "start":"vite",
+    "build":"vite build",
+    "preview":"vite preview",
+    "start:base":"cross-env BASE_ENV=true vite",
+    "build:base":"cross-env BASE_ENV=true vite build",
+    "preview:base":"cross-env BASE_ENV=true vite preview",
     "start-w": "webpack-dev-server --mode=development --config=./webpack.config.js",
     "start-w:base": "cross-env BASE_ENV=true webpack-dev-server --mode=development --config=./webpack.config.js ",
-    "build": " webpack --mode=production"
+    "build-w": " webpack --mode=production"
 
   },
   "browserslist": {

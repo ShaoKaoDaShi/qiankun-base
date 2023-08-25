@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import Logo from "./logo.png";
-import styles from "./LogoComponent.modules.css";
+import styles from "./LogoComponent.module.css";
 
 const LogoComponent = ({collapsed=false}) => {
   return (
