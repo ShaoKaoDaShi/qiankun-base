@@ -22,15 +22,33 @@ const config = {
     },
     module: {
         rules: [
-            {
-                test: /\.tsx?$/,
-                exclude: /node_modules/,
-                use: [
+            // {
+            //     test: /\.tsx?$/,
+            //     exclude: /node_modules/,
+            //     use: [
+            //         {
+            //             loader: "ts-loader",
+            //         },
+            //     ],
+            // },
+
+                {
+                  test: /\.tsx?$/,
+                  exclude: /node_modules/,
+                  use: [
                     {
-                        loader: "ts-loader",
+                      loader: 'swc-loader',
+                      options: {
+                        jsc: {
+                          parser: {
+                            syntax: 'typescript',
+                            tsx: true,
+                          },
+                        },
+                      },
                     },
-                ],
-            },
+                  ],
+                },
             {
                 test: /\.css$/,
                 use: ["style-loader", { loader: "css-loader" }],
