@@ -36,7 +36,7 @@ const ErrorDashboard = () => {
                 width: "180px",
                 render: (text: string) => {
                     return dayjs(text).format("YYYY/MM/DD HH:mm:ss");
-                },
+                }
             },
             {
                 title: "错误次数",
@@ -203,8 +203,8 @@ const ErrorDashboard = () => {
                 columns={columns}
                 dataSource={errorData}
                 expandable={{
-                    expandedRowRender: (record) => (
-                        <div>
+                    expandedRowRender: (record,index) => (
+                        <>
                             {record.detail?.split("\n")?.map((item, i) => {
                                 if (i == 0)
                                     return (
@@ -221,6 +221,7 @@ const ErrorDashboard = () => {
                                 return (
                                     <>
                                         <Text
+                                            key={i}
                                             underline
                                             type="danger"
                                             style={{ marginLeft: "30px" }}
@@ -231,7 +232,7 @@ const ErrorDashboard = () => {
                                     </>
                                 );
                             })}
-                        </div>
+                        </>
                     ),
                     defaultExpandedRowKeys: ["0"],
                 }}

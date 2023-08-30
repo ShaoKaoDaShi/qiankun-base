@@ -4,13 +4,12 @@ import { eventWithTime } from "@rrweb/types";
 import * as _ from "lodash";
 import type { RrwebError } from "./types";
 
-const eventsMatrix:eventWithTime[][] = [[],[]];
+const eventsMatrix: eventWithTime[][] = [[], []];
 
 rrweb.record({
     emit(event, isCheckout) {
-        // isCheckout is a flag to tell you the events has been checkout
         if (isCheckout) {
-            eventsMatrix.shift()
+            eventsMatrix.shift();
             eventsMatrix.push([]);
         }
         const lastEvents = eventsMatrix[eventsMatrix.length - 1];
@@ -26,28 +25,33 @@ rrweb.record({
         // set the interval of media interaction event
         media: 800,
         // set the timing of record input
-        input: 'last' // When input mulitple characters, only record the final input
-      },
+        input: "last",
+    },
     checkoutEveryNms: 3 * 1000, // checkout every 5 minutes
 });
-
-// send last two events array to the backend
-window.addEventListener("error",function (e) {
+function errorHandler(e) {
+    request.post("/ding", {
+        msgtype: "text",
+        text: {
+            content: "监控报警: " + e.message,
+        },
+    });
     const len = eventsMatrix.length;
-    // 获取最近10秒内发生的事件
+
     let events = eventsMatrix[len - 2]
         ? eventsMatrix[len - 2].concat(eventsMatrix[len - 1])
         : eventsMatrix[len - 1];
 
-    if(events.length>100){
-        //防止发送过多的无效数据
-        events = events.slice(events.length-100)
-        // events = events.slice(0,300).concat(events.slice(events.length-301,events.length))
+    if (events.length > 100) {
+        events = events.slice(events.length - 100);
     }
-    const body:RrwebError = { errorInfo:{message:e.message, stack:e.error.stack} ,events };
-    request.post(
-        "/api/rrweb/save",
-        body
-    );
-})
+    const body: RrwebError = {
+        errorInfo: { message: e.message, stack: e.error.stack },
+        events,
+    };
+    request.post("/api/rrweb/save", body);
+}
+// 防止同一个错误捕获两次
+const debErrorFun = _.debounce(errorHandler, 100);
 
+window.addEventListener("error", debErrorFun);
