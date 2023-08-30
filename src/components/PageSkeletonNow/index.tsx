@@ -15,6 +15,7 @@ import menuStore from "../../store/menuStore";
 import request from "../../request";
 import Cookies from "js-cookie";
 import Rrweb from "../../Pages/Rrweb";
+import ErrorDashboard from "../../Pages/ErrorDashboard";
 
 const PageSkeleton = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -56,6 +57,7 @@ const PageSkeleton = () => {
                             <Route path="/home" component={Home} />
                             <Route path="/dashboard" component={Dashboard} />
                             <Route path="/rrweb" component={Rrweb} />
+                            <Route path="/errorDashboard" component={ErrorDashboard} />
                             <div id="container"></div>
                         </Content>
                         <Footer
