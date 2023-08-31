@@ -1,20 +1,20 @@
 import { makeAutoObservable } from "mobx";
 class MenuStore {
-  menuList: string[] = [];
-  initBool = false;
+    menuList: string[] = [];
+    initBool = false;
 
-  constructor() {
-    makeAutoObservable(this);
-  }
+    constructor() {
+        makeAutoObservable(this);
+    }
 
-  setMenuList(_menuList: string[]) {
-    this.menuList = _menuList;
-    this.initBool = true;
-  }
+    setMenuList(_menuList: string[]) {
+        this.menuList = _menuList;
+        this.initBool = true;
+    }
 
-  setInitBool(_initBool: boolean) {
-    this.initBool = _initBool;
-  }
+    setInitBool(_initBool: boolean) {
+        this.initBool = _initBool;
+    }
 }
 
 export { MenuStore };

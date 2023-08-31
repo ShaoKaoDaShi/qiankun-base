@@ -11,39 +11,39 @@ const PageSkeletonNow = lazy(() => import("../components/PageSkeletonNow"));
 const LoginPage = lazy(() => import("../Pages/Login"));
 
 const Router = () => {
-  const location = useLocation();
-  const history = useHistory();
-  const token = Cookies.get("access_token");
-  // if(menuStore.initBool===false){
-  //     request.post("/api/menuList",{"username":"vue"}).then(({data})=>{
-  //         menuStore.setMenuList(data?.menuList||[])
-  //     })
-  // }
-  if (!token && window.location.pathname !== "/login") {
-    history.push("/login");
-  }
-  useEffect(() => {
-    NProgress.start();
-  }, [location]);
-  useEffect(() => {
-    NProgress.done();
-  });
+    const location = useLocation();
+    const history = useHistory();
+    const token = Cookies.get("access_token");
+    // if(menuStore.initBool===false){
+    //     request.post("/api/menuList",{"username":"vue"}).then(({data})=>{
+    //         menuStore.setMenuList(data?.menuList||[])
+    //     })
+    // }
+    if (!token && window.location.pathname !== "/login") {
+        history.push("/login");
+    }
+    useEffect(() => {
+        NProgress.start();
+    }, [location]);
+    useEffect(() => {
+        NProgress.done();
+    });
 
-  return (
-    <>
-      <Suspense fallback={<div>loading ...</div>}>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route path={["/"]} component={PageSkeletonNow} />
+    return (
+        <>
+            <Suspense fallback={<div>loading ...</div>}>
+                <Route exact path="/">
+                    <Redirect to="/home" />
+                </Route>
+                <Route path={["/"]} component={PageSkeletonNow} />
 
-        <Route
-          path="/login"
-          component={() => <LoginPage myWindow={myWindow} />}
-        />
-      </Suspense>
-    </>
-  );
+                <Route
+                    path="/login"
+                    component={() => <LoginPage myWindow={myWindow} />}
+                />
+            </Suspense>
+        </>
+    );
 };
 
 export default Router;

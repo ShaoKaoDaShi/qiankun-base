@@ -1,16 +1,16 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  flex: auto;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
 }
 
 .loginForm {
-  position: absolute;
-  min-width: 350px;
-  top: 40%;
-  right: 30%;
-  border: 1px solid #ddd;
+    position: absolute;
+    min-width: 350px;
+    top: 40%;
+    right: 30%;
+    border: 1px solid #ddd;
 }
 .backImage {
-  flex: 1;
+    flex: 1;
 }
