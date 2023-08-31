@@ -3,14 +3,14 @@ import { Route as OfficalRoute } from "react-router-dom";
 import type { RouteProps } from "react-router-dom";
 import NProgress from "../NProgress";
 const FancyRoute = (props: RouteProps) => {
-  useEffect(() => {
-    NProgress.start();
-    return () => {
-      NProgress.done();
-    };
-  }, []);
+    useEffect(() => {
+        NProgress.start();
+        return () => {
+            NProgress.done();
+        };
+    }, []);
 
-  return <OfficalRoute {...props} />;
+    return <OfficalRoute {...props} />;
 };
 
 export default FancyRoute;

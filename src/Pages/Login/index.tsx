@@ -6,25 +6,25 @@ import { observer } from "mobx-react-lite";
 import LoginForm from "../../components/LoginForm";
 import myWindowStore from "../../store/window";
 const LoginPage = observer<{
-  myWindow?: { innerWidth: number; innerHeight: number };
+    myWindow?: { innerWidth: number; innerHeight: number };
 }>(({ myWindow = myWindowStore }) => {
-  return (
-    <div className={styles.container}>
-      <img
-        src={BackImage}
-        width={myWindow.innerWidth}
-        height={myWindow.innerHeight}
-      />
-      {/* <BackImage
+    return (
+        <div className={styles.container}>
+            <img
+                src={BackImage}
+                width={myWindow.innerWidth}
+                height={myWindow.innerHeight}
+            />
+            {/* <BackImage
                 width={myWindow.innerWidth}
                 height={myWindow.innerHeight}
             /> */}
 
-      <Card className={styles.loginForm} hoverable>
-        <LoginForm />
-      </Card>
-    </div>
-  );
+            <Card className={styles.loginForm} hoverable>
+                <LoginForm />
+            </Card>
+        </div>
+    );
 });
 
 export default LoginPage;

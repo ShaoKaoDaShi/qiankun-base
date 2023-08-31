@@ -12,13 +12,13 @@ import "./rrweb";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <BrowserRouter>
-    <Router />
-  </BrowserRouter>,
+    <BrowserRouter>
+        <Router />
+    </BrowserRouter>,
 );
 
 console.log(process.env.not_qiankun);
 if (!process.env.not_qiankun) {
-  console.log(process.env.not_qiankun);
-  start();
+    console.log(process.env.not_qiankun);
+    start();
 }
