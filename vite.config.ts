@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dotenv from "dotenv";
+import terser from "@rollup/plugin-terser";
 dotenv.config();
 
 // https://vitejs.dev/config/
@@ -32,6 +33,14 @@ export default defineConfig({
                     rrweb: ["rrweb"],
                 },
             },
+            // plugins: [
+            //     terser({
+            //         compress: {
+            //             drop_debugger: true,
+            //             drop_console: true,
+            //         },
+            //     }),
+            // ],
         },
     },
 });

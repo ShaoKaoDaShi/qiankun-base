@@ -9,6 +9,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 const config = {
     mode: "development",
@@ -159,8 +160,17 @@ module.exports = (env, argv) => {
                     },
                 },
             },
+            minimizer: [
+                new TerserPlugin({
+                  terserOptions: {
+                    compress: {
+                      drop_debugger: true,
+                      drop_console: true,
+                    },
+                  },
+                }),
+              ],
         };
     }
-
     return config;
 };
