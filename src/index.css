@@ -1,31 +1,34 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-#nprogress .bar{
+#nprogress .bar {
   /* background-color: red ; */
   background-color: var(--jjext-color-brand) !important;
-
 }
 #nprogress .peg {
-  box-shadow: 0 0 10px var(--jjext-color-brand), 0 0 5px var(--jjext-color-brand) !important;
+  box-shadow:
+    0 0 10px var(--jjext-color-brand),
+    0 0 5px var(--jjext-color-brand) !important;
 }
 #nprogress .spinner-icon {
   border-top-color: var(--jjext-color-brand) !important;
   border-left-color: var(--jjext-color-brand) !important;
 }
 
-html,body,#root{
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   display: flex;

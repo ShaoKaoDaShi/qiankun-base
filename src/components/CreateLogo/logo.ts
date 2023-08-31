@@ -45,5 +45,5 @@ style="width: 42.5914px; height: 35.5232px">
 </div>
 </div>
 </div>
-`
-export default logoHtml
+`;
+export default logoHtml;

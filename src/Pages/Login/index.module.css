@@ -4,14 +4,13 @@
   flex: auto;
 }
 
-.loginForm{
+.loginForm {
   position: absolute;
   min-width: 350px;
-  top:40%;
+  top: 40%;
   right: 30%;
   border: 1px solid #ddd;
 }
-.backImage{
+.backImage {
   flex: 1;
-
 }

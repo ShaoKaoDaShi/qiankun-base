@@ -1,4 +1,3 @@
-
 import * as Sentry from "@sentry/react";
 Sentry.init({
   dsn: "https://f6f193b6771b099f0cc313d7897cc83f@o4505698736013312.ingest.sentry.io/4505698749120512",

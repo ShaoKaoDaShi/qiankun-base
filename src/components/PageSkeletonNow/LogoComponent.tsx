@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import Logo from "./logo.png";
 import styles from "./LogoComponent.module.css";
 
-const LogoComponent = ({collapsed=false}) => {
+const LogoComponent = ({ collapsed = false }) => {
   return (
     <div className={styles.logo}>
       <img src={Logo} />

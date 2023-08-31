@@ -9,15 +9,15 @@ const CreateLogo = () => {
     ref.current.innerHTML = logoHtml;
     const content = ref.current.firstElementChild as HTMLDivElement;
     const logoChilds = Array.from(content.children).map(
-      (child) => child as HTMLDivElement
+      (child) => child as HTMLDivElement,
     );
     const tops = logoChilds.map(
       (child) =>
-        parseFloat(child.style.top) - parseFloat(logoChilds[0].style.top)
+        parseFloat(child.style.top) - parseFloat(logoChilds[0].style.top),
     );
     const lefts = logoChilds.map(
       (child) =>
-        parseFloat(child.style.left) - parseFloat(logoChilds[0].style.left)
+        parseFloat(child.style.left) - parseFloat(logoChilds[0].style.left),
     );
     logoChilds.forEach((child, index) => {
       child.style.left = lefts[index] + "px";
