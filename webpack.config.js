@@ -1,14 +1,14 @@
-import * as path from "path";
-import * as webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-// // in case you run into any typescript error when configuring `devServer`
-import CopyWebpackPlugin from "copy-webpack-plugin";
-import InterpolateHtmlPlugin from "react-dev-utils/InterpolateHtmlPlugin";
-import { BundleStatsWebpackPlugin } from "bundle-stats-webpack-plugin";
-// const path = require("path");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const webpack = require("webpack");
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
+// import * as path from "path";
+// import * as webpack from "webpack";
+// import HtmlWebpackPlugin from "html-webpack-plugin";
+// // // in case you run into any typescript error when configuring `devServer`
+// import CopyWebpackPlugin from "copy-webpack-plugin";
+// import InterpolateHtmlPlugin from "react-dev-utils/InterpolateHtmlPlugin";
+// import { BundleStatsWebpackPlugin } from "bundle-stats-webpack-plugin";
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
     mode: "development",
@@ -54,14 +54,14 @@ const config = {
                 use: ["style-loader", { loader: "css-loader" }],
             },
             {
-                test: /\.(png|jpg|jpeg|gif)$/i,
+                test: /\.(png|jpg|jpeg|gif|svg)$/i,
                 type: "asset/resource",
             },
-            {
-                test: /\.svg$/i,
-                issuer: /\.[jt]sx?$/,
-                use: [{ loader: "@svgr/webpack", options: { icon: true } }],
-            },
+            // {
+            //     test: /\.svg$/i,
+            //     issuer: /\.[jt]sx?$/,
+            //     use: [{ loader: "@svgr/webpack", options: { icon: true } }],
+            // },
         ],
     },
     plugins: [
