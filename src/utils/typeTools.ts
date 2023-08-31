@@ -3,20 +3,20 @@ type ArrayElementType<T> = T extends (infer U)[] ? U : never; // 数组元素的
 
 export type { PropertyType, ArrayElementType };
 type MyOmit<T, K extends keyof T> = {
-    [Key in keyof T as Key extends K ? never : Key]: T[Key];
+  [Key in keyof T as Key extends K ? never : Key]: T[Key];
 };
 // type MyOmit<T, U> = {
 //     [K in MyExclude<keyof T, U>]: T[K];
 // };
 type MyPick<T, U> = {
-    [K in MyExtract<keyof T, U>]: T[K];
+  [K in MyExtract<keyof T, U>]: T[K];
 };
 
 type MyExclude<T, U> = T extends U ? never : T;
 type MyExtract<T, U> = T extends U ? T : never;
 interface A {
-    a: number;
-    b: string;
+  a: number;
+  b: string;
 }
 type C = Exclude<A, { a }>;
 type F = Extract<A, { a }>;

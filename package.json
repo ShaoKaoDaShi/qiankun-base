@@ -34,7 +34,7 @@
         "start-w": "webpack-dev-server --mode=development --config=./webpack.config.js",
         "start-w:base": "cross-env BASE_ENV=true webpack-dev-server --mode=development --config=./webpack.config.js ",
         "build-w": " webpack --mode=production",
-        "precommit": " eslint --fix . --ext .ts,.tsx"
+        "precommit": "eslint --fix . --ext .ts,.tsx"
     },
     "browserslist": {
         "production": [

@@ -18,66 +18,58 @@ import Rrweb from "../../Pages/Rrweb";
 import ErrorDashboard from "../../Pages/ErrorDashboard";
 
 const PageSkeleton = () => {
-    const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: { colorBgContainer },
-    } = theme.useToken();
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
 
-    const isLoginPath = () => {
-        return window.location.pathname === "/login";
-    };
-    if (menuStore.initBool === false) {
-        const username = Cookies.get("username");
-        request
-            .post("/api/menuList", { username: username })
-            .then(({ data }) => {
-                menuStore.setMenuList(data?.menuList || []);
-            });
-    }
-    return (
-        <Layout style={{ flex: "auto" }}>
-            {isLoginPath() || (
-                <>
-                    <Sider trigger={null} collapsible collapsed={collapsed}>
-                        <LogoComponent collapsed={collapsed} />
-                        <Menu menuStore={menuStore} />
-                    </Sider>
-                    <Layout>
-                        <Header
-                            collapsed={collapsed}
-                            setCollapsed={setCollapsed}
-                        />
-                        <Content
-                            style={{
-                                margin: "24px 16px",
-                                padding: 24,
-                                minHeight: 280,
-                                background: colorBgContainer,
-                                overflow: "scroll",
-                            }}
-                        >
-                            <Route path="/home" component={Home} />
-                            <Route path="/dashboard" component={Dashboard} />
-                            <Route path="/rrweb" component={Rrweb} />
-                            <Route
-                                path="/errorDashboard"
-                                component={ErrorDashboard}
-                            />
-                            <div id="container"></div>
-                        </Content>
-                        <Footer
-                            style={{
-                                textAlign: "center",
-                            }}
-                        >
-                            <TimerView timer={myTimer} />
-                            <div>powered by shaokaodashi</div>
-                        </Footer>
-                    </Layout>
-                </>
-            )}
-        </Layout>
-    );
+  const isLoginPath = () => {
+    return window.location.pathname === "/login";
+  };
+  if (menuStore.initBool === false) {
+    const username = Cookies.get("username");
+    request.post("/api/menuList", { username: username }).then(({ data }) => {
+      menuStore.setMenuList(data?.menuList || []);
+    });
+  }
+  return (
+    <Layout style={{ flex: "auto" }}>
+      {isLoginPath() || (
+        <>
+          <Sider trigger={null} collapsible collapsed={collapsed}>
+            <LogoComponent collapsed={collapsed} />
+            <Menu menuStore={menuStore} />
+          </Sider>
+          <Layout>
+            <Header collapsed={collapsed} setCollapsed={setCollapsed} />
+            <Content
+              style={{
+                margin: "24px 16px",
+                padding: 24,
+                minHeight: 280,
+                background: colorBgContainer,
+                overflow: "scroll",
+              }}
+            >
+              <Route path="/home" component={Home} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/rrweb" component={Rrweb} />
+              <Route path="/errorDashboard" component={ErrorDashboard} />
+              <div id="container"></div>
+            </Content>
+            <Footer
+              style={{
+                textAlign: "center",
+              }}
+            >
+              <TimerView timer={myTimer} />
+              <div>powered by shaokaodashi</div>
+            </Footer>
+          </Layout>
+        </>
+      )}
+    </Layout>
+  );
 };
 
 export default PageSkeleton;
