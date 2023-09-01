@@ -39,6 +39,9 @@ export default defineConfig({
                         drop_debugger: true,
                         drop_console: true,
                     },
+                    format: {
+                        comments: false,
+                    },
                 }),
             ],
         },
