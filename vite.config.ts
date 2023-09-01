@@ -33,14 +33,14 @@ export default defineConfig({
                     rrweb: ["rrweb"],
                 },
             },
-            // plugins: [
-            //     terser({
-            //         compress: {
-            //             drop_debugger: true,
-            //             drop_console: true,
-            //         },
-            //     }),
-            // ],
+            plugins: [
+                terser({
+                    compress: {
+                        drop_debugger: true,
+                        drop_console: true,
+                    },
+                }),
+            ],
         },
     },
 });
