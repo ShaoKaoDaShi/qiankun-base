@@ -7,7 +7,8 @@ request.interceptors.request.use(
     function (config) {
         // 在发送请求之前做些什么
         nprogress.start();
-        config.headers.Authorization = Cookies.get("access_token");
+        console.log(Cookies.get("access_token"));
+        // config.headers.Authorization = Cookies.get("access_token");
         return config;
     },
     function (error) {
@@ -22,7 +23,7 @@ request.interceptors.response.use(
     function (response) {
         // 2xx 范围内的状态码都会触发该函数。
         // 对响应数据做点什么
-        Cookies.set("access_token", response.headers.authorization);
+        // Cookies.set("access_token", response.headers.authorization);
         nprogress.done();
         return response;
     },
