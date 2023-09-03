@@ -1,6 +1,6 @@
 {
     "name": "qiankun-base",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "dependencies": {
         "@ant-design/icons": "^5.2.5",
         "@sentry/react": "^7.63.0",
