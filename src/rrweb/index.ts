@@ -30,24 +30,6 @@ rrweb.record({
     checkoutEveryNms: 3 * 1000, // checkout every 5 minutes
 });
 function errorHandler(e) {
-    // request.post("/ding", {
-    //     msgtype: "text",
-    //     text: {
-    //         content: "监控报警: " + e.message,
-    //     },
-    // });
-    fetch(
-        "https://oapi.dingtalk.com/robot/send?access_token=a6b6ca5fb0456352000d565b90b4d23c7871b0df92a37136751d8933f6de98d1",
-        {
-            method: "POST",
-            body: JSON.stringify({
-                msgtype: "text",
-                text: {
-                    content: "监控报警: " + e.message,
-                },
-            }),
-        },
-    );
     const len = eventsMatrix.length;
 
     let events = eventsMatrix[len - 2]

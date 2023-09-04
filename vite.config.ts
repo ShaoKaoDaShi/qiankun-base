@@ -17,11 +17,6 @@ export default defineConfig({
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, ""),
             },
-            "/ding": {
-                target: process.env.DING_URL,
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/ding/, ""),
-            },
         },
     },
 
