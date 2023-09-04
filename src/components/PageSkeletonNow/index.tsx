@@ -16,6 +16,7 @@ import request from "../../request";
 import Cookies from "js-cookie";
 import Rrweb from "../../Pages/Rrweb";
 import ErrorDashboard from "../../Pages/ErrorDashboard";
+import ErrorListenProjects from "../../Pages/ErrorListenProjects";
 
 const PageSkeleton = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -62,6 +63,10 @@ const PageSkeleton = () => {
                             <Route
                                 path="/errorDashboard"
                                 component={ErrorDashboard}
+                            />
+                            <Route
+                                path="/errorListenProjectList"
+                                component={ErrorListenProjects}
                             />
                             <div id="container"></div>
                         </Content>

@@ -3,7 +3,7 @@ import { Card, Table, Typography, Button, Modal } from "antd";
 import * as echarts from "echarts";
 import request from "../../request";
 import dayjs from "dayjs";
-import { RrwebError } from "../../rrweb/types";
+import { ResponseRrwebError, RrwebError } from "../../rrweb/types";
 import { eventWithTime } from "@rrweb/types";
 import RrwebWarp from "./RrwebWarp";
 import * as _ from "lodash";
@@ -16,7 +16,7 @@ interface TableItem {
     time: number;
     detail: string;
     count: number;
-    events: eventWithTime[];
+    projectId: number;
 }
 const ErrorDashboard = () => {
     const ref1 = useRef();
@@ -62,7 +62,10 @@ const ErrorDashboard = () => {
                                         </Text>
                                     ),
                                     content: (
-                                        <RrwebWarp events={record.events} />
+                                        <RrwebWarp
+                                            projectId={record.projectId}
+                                            message={record.type}
+                                        />
                                     ),
                                     okText: "关闭",
                                     width: 920,
@@ -89,44 +92,45 @@ const ErrorDashboard = () => {
     );
     console.log(xAxisData);
     useEffect(() => {
-        request.post("/api/rrweb/get").then(({ data: _data }) => {
-            const data = _data as RrwebError[];
-            const newSeriesData = xAxisData.map((item) => {
-                const timeStart = dayjs(item).startOf("day").valueOf();
-                const timeEnd = dayjs(item).endOf("day").valueOf();
-                return data.filter((item) => {
-                    if (item.events.length < 1) return false;
-                    const errorTime = item.events[0].timestamp;
-                    return timeStart < errorTime && errorTime < timeEnd;
-                }).length;
+        request
+            .post("/api/rrweb/get", { projectName: "qiankun-base" })
+            .then(({ data: _data }) => {
+                const data = _data as ResponseRrwebError[];
+                const newSeriesData = xAxisData.map((item) => {
+                    const timeStart = dayjs(item).startOf("day").valueOf();
+                    const timeEnd = dayjs(item).endOf("day").valueOf();
+                    return data.filter((item) => {
+                        const errorTime = item.timestamp;
+                        return timeStart < errorTime && errorTime < timeEnd;
+                    }).length;
+                });
+                const getErrorData = (data: ResponseRrwebError[]) => {
+                    const map = new Map();
+                    return data.reduce<TableItem[]>((pre, cur, index) => {
+                        if (map.get(cur.errorInfo.message) === undefined) {
+                            pre.push({
+                                projectId: cur.projectId,
+                                key: index + "",
+                                type: cur.errorInfo.message,
+                                time: cur.timestamp,
+                                detail: cur.errorInfo.stack,
+                                count: 1,
+                            });
+                            map.set(cur.errorInfo.message, 1);
+                        } else {
+                            const item = pre.find(
+                                (item) => item.type === cur.errorInfo.message,
+                            );
+                            item.count++;
+                            item.time = cur.timestamp;
+                        }
+                        return pre;
+                    }, []);
+                };
+                const errorData = getErrorData(data);
+                setErrorData(errorData);
+                setSeriesData(newSeriesData);
             });
-            const getErrorData = (data: RrwebError[]) => {
-                const map = new Map();
-                return data.reduce<TableItem[]>((pre, cur, index) => {
-                    if (map.get(cur.errorInfo.message) === undefined) {
-                        pre.push({
-                            key: index + "",
-                            type: cur.errorInfo.message,
-                            time: cur.events[0].timestamp,
-                            detail: cur.errorInfo.stack,
-                            count: 1,
-                            events: cur.events,
-                        });
-                        map.set(cur.errorInfo.message, 1);
-                    } else {
-                        const item = pre.find(
-                            (item) => item.type === cur.errorInfo.message,
-                        );
-                        item.count++;
-                        item.events = cur.events;
-                    }
-                    return pre;
-                }, []);
-            };
-            const errorData = getErrorData(data);
-            setErrorData(errorData);
-            setSeriesData(newSeriesData);
-        });
     }, []);
     useEffect(() => {
         if (seriesData.length < 1) return;
@@ -210,28 +214,25 @@ const ErrorDashboard = () => {
                             {record.detail?.split("\n")?.map((item, i) => {
                                 if (i == 0)
                                     return (
-                                        <>
-                                            <Title
-                                                underline
-                                                type="danger"
-                                                level={5}
-                                            >
-                                                {item}
-                                            </Title>
-                                        </>
-                                    );
-                                return (
-                                    <>
-                                        <Text
+                                        <Title
                                             key={i}
                                             underline
                                             type="danger"
-                                            style={{ marginLeft: "30px" }}
+                                            level={5}
                                         >
                                             {item}
-                                        </Text>
+                                        </Title>
+                                    );
+                                return (
+                                    <Text
+                                        key={i}
+                                        underline
+                                        type="danger"
+                                        style={{ marginLeft: "30px" }}
+                                    >
+                                        {item}
                                         <br />
-                                    </>
+                                    </Text>
                                 );
                             })}
                         </>

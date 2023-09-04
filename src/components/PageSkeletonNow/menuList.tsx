@@ -55,14 +55,14 @@ const menuList = [
         label: "dashboard",
     },
     {
-        key: "rrweb",
-        icon: <UploadOutlined />,
-        label: "rrweb",
-    },
-    {
         key: "errorDashboard",
         icon: <UploadOutlined />,
         label: "errorDashboard",
+    },
+    {
+        key: "errorListenProjectList",
+        icon: <UploadOutlined />,
+        label: "监控项目列表",
     },
 ];
 export default menuList;
