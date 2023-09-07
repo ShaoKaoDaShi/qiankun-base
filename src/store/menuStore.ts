@@ -1,13 +1,17 @@
 import { makeAutoObservable } from "mobx";
+interface MenuItem {
+    key: string;
+    children?: MenuItem[];
+}
 class MenuStore {
-    menuList: string[] = [];
+    menuList: MenuItem[] = [];
     initBool = false;
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    setMenuList(_menuList: string[]) {
+    setMenuList(_menuList: MenuItem[]) {
         this.menuList = _menuList;
         this.initBool = true;
     }
@@ -17,5 +21,5 @@ class MenuStore {
     }
 }
 
-export { MenuStore };
+export { MenuStore, MenuItem };
 export default new MenuStore();

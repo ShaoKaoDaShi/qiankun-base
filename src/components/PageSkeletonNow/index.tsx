@@ -11,7 +11,7 @@ import myTimer from "../../store/timer";
 import Menu from "./Menu";
 import Header from "./Header";
 import Dashboard from "../../Pages/Dashboard";
-import menuStore from "../../store/menuStore";
+import menuStore, { MenuItem } from "../../store/menuStore";
 import request from "../../request";
 import Cookies from "js-cookie";
 import Rrweb from "../../Pages/Rrweb";
@@ -32,7 +32,7 @@ const PageSkeleton = () => {
         const username = Cookies.get("username");
         request
             .post("/api/menuList", { username: username })
-            .then((response: AxiosResponse<{ menuList: string[] }>) => {
+            .then((response: AxiosResponse<{ menuList: MenuItem[] }>) => {
                 menuStore.setMenuList(response.data?.menuList || []);
             });
     }

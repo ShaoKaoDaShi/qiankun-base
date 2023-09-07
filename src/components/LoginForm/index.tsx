@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input, Radio } from "antd";
 import type { RadioChangeEvent } from "antd";
 import request from "../../request/index";
 import { useHistory } from "react-router-dom";
-import menuStore from "../../store/menuStore";
+import menuStore, { MenuItem } from "../../store/menuStore";
 import styles from "./index.module.css";
 import { AxiosResponse } from "axios";
 
@@ -28,22 +28,16 @@ const LoginForm: React.FC = () => {
         if (loginType === "login") {
             request
                 .post("/api/user/login", values)
-                .then((response: AxiosResponse<{ menuList: string[] }>) => {
-                    const { menuList = [] } = response.data;
-                    if (menuList.length > 0) {
-                        menuStore.setMenuList(menuList);
-                        history.push("/home");
-                    }
+                .then((response: AxiosResponse<{ errMsg: string }>) => {
+                    if (response.data.errMsg) return;
+                    history.push("/home");
                 });
         } else {
             request
                 .post("/api/user/register", values)
-                .then((response: AxiosResponse<{ menuList: string[] }>) => {
-                    const { menuList = [] } = response.data;
-                    if (menuList.length > 0) {
-                        menuStore.setMenuList(menuList);
-                        history.push("/home");
-                    }
+                .then((response: AxiosResponse<{ errMsg: string }>) => {
+                    if (response.data.errMsg) return;
+                    history.push("/home");
                 });
         }
     };
