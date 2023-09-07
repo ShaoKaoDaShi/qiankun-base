@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import * as H from "history";
 import { Menu as AntMenu } from "antd";
 import menuList from "./menuList";
 import { MenuStore } from "../../store/menuStore";
@@ -8,7 +7,16 @@ import { observer } from "mobx-react-lite";
 import * as _ from "lodash";
 
 let updateNum = 0;
-
+function containTreeItem(pathArr: string[], tree = []) {
+    if (pathArr.length === 0) return true;
+    const pathItem = pathArr.shift();
+    for (let i = 0; i < tree.length; i++) {
+        if (pathItem.includes(tree[i].key)) {
+            return containTreeItem(pathArr, tree[i].children);
+        }
+    }
+    return false;
+}
 const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
     const [list, setList] = useState(menuList);
     const [selectedKey, setSelectedKey] = useState("");
@@ -40,7 +48,7 @@ const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
         if (menuStore.initBool === false) return;
         function containTreeItem(item: string, tree) {
             for (let i = 0; i < tree.length; i++) {
-                if (item.includes(tree[i].key)) {
+                if (item === tree[i].key) {
                     return true;
                 }
                 if (tree[i].children && tree[i].children?.length) {
@@ -49,16 +57,16 @@ const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
             }
             return false;
         }
-        function filterMenus(target, origin) {
+        function filterMenus(target, origin, parentExist = false) {
+            if (parentExist) return target;
             return target.filter((item) => {
-                if (item.children && item.children?.length) {
-                    item.children = filterMenus(item.children, origin);
-                }
-                if (
-                    containTreeItem(item.key, origin) ||
-                    item.children?.length
-                ) {
+                let exit = false;
+                if (containTreeItem(item.key, origin)) {
+                    exit = true;
                     return true;
+                } else if (item.children && item.children?.length) {
+                    item.children = filterMenus(item.children, origin, exit);
+                    if (item.children?.length > 0) return true;
                 }
 
                 return false;
@@ -66,7 +74,6 @@ const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
         }
 
         const list = filterMenus(_.cloneDeep(menuList), menuStore.menuList);
-
         setList(list);
     }, [menuStore.menuList]);
 

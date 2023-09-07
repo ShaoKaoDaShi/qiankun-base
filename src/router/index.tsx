@@ -7,9 +7,19 @@ import NProgress from "../components/NProgress";
 // import PageSkeletonNow from "../components/PageSkeletonNow";
 import menuStore from "../store/menuStore";
 import request from "../request/index";
+import { toJS } from "mobx";
 const PageSkeletonNow = lazy(() => import("../components/PageSkeletonNow"));
 const LoginPage = lazy(() => import("../Pages/Login"));
-
+function containTreeItem(pathArr: string[], tree = []) {
+    if (pathArr.length === 0) return true;
+    const pathItem = pathArr.shift();
+    for (let i = 0; i < tree.length; i++) {
+        if (pathItem.includes(tree[i].key)) {
+            return containTreeItem(pathArr, tree[i].children);
+        }
+    }
+    return false;
+}
 const Router = () => {
     const location = useLocation();
     const history = useHistory();
@@ -22,7 +32,18 @@ const Router = () => {
     }, [location]);
     useEffect(() => {
         NProgress.done();
+        return () => {
+            NProgress.done();
+        };
     });
+    if (menuStore.initBool && window.location.pathname !== "/login") {
+        const pathArr = location.pathname.split("/");
+        pathArr.shift();
+
+        if (!containTreeItem(pathArr, menuStore.menuList)) {
+            history.push("/home");
+        }
+    }
 
     return (
         <>

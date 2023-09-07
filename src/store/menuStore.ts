@@ -6,6 +6,8 @@ interface MenuItem {
 class MenuStore {
     menuList: MenuItem[] = [];
     initBool = false;
+    userMenuList: MenuItem[] = [];
+    userInitBool = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -18,6 +20,15 @@ class MenuStore {
 
     setInitBool(_initBool: boolean) {
         this.initBool = _initBool;
+    }
+
+    getMenuList() {
+        return this.menuList;
+    }
+
+    setUserMenuList(userMenuList: MenuItem[]) {
+        this.userMenuList = userMenuList;
+        this.userInitBool = true;
     }
 }
 
