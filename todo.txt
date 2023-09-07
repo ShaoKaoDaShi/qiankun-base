@@ -1,7 +1,2 @@
-- husky eslint 解决打包环境中 console.log, debugger, 已生命旦未使用
-- 手动加载子应用
-- router 配合微前端使用
-- 整理组件
 - postcss-loader, css兼容性插件
 - tailwindcss
-- css modules 在编辑器中跳转的时候 跳到文件的指定位置
