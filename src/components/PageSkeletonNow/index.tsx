@@ -17,6 +17,7 @@ import Cookies from "js-cookie";
 import Rrweb from "../../Pages/Rrweb";
 import ErrorDashboard from "../../Pages/ErrorDashboard";
 import ErrorListenProjects from "../../Pages/ErrorListenProjects";
+import { AxiosResponse } from "axios";
 
 const PageSkeleton = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -31,8 +32,8 @@ const PageSkeleton = () => {
         const username = Cookies.get("username");
         request
             .post("/api/menuList", { username: username })
-            .then(({ data }) => {
-                menuStore.setMenuList(data?.menuList || []);
+            .then((response: AxiosResponse<{ menuList: string[] }>) => {
+                menuStore.setMenuList(response.data?.menuList || []);
             });
     }
     return (

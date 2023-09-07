@@ -3,6 +3,7 @@ import rrwebPlayer from "rrweb-player";
 import request from "../../request";
 import { ResponseRrwebError } from "../../rrweb/types";
 import { Skeleton } from "antd";
+import { AxiosResponse } from "axios";
 
 const RrwebWarp = ({ projectId, message }) => {
     const [loading, setLoading] = useState(true);
@@ -10,9 +11,9 @@ const RrwebWarp = ({ projectId, message }) => {
     useEffect(() => {
         request
             .post("/api/rrweb/getEventsFromErrors", { projectId, message })
-            .then(({ data: _data }) => {
+            .then((response: AxiosResponse<ResponseRrwebError>) => {
                 setLoading(false);
-                const data = _data as ResponseRrwebError;
+                const data = response.data;
                 Promise.resolve().then(() => {
                     new rrwebPlayer({
                         target: ref.current,

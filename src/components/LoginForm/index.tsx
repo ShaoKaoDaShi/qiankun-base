@@ -5,6 +5,7 @@ import request from "../../request/index";
 import { useHistory } from "react-router-dom";
 import menuStore from "../../store/menuStore";
 import styles from "./index.module.css";
+import { AxiosResponse } from "axios";
 
 type FieldType = {
     username?: string;
@@ -25,21 +26,25 @@ const LoginForm: React.FC = () => {
     const onFinish = (values: FieldType) => {
         console.log("Success:", values);
         if (loginType === "login") {
-            request.post("/api/user/login", values).then(({ data }) => {
-                const { menuList = [] } = data;
-                if (menuList.length > 0) {
-                    menuStore.setMenuList(menuList);
-                    history.push("/home");
-                }
-            });
+            request
+                .post("/api/user/login", values)
+                .then((response: AxiosResponse<{ menuList: string[] }>) => {
+                    const { menuList = [] } = response.data;
+                    if (menuList.length > 0) {
+                        menuStore.setMenuList(menuList);
+                        history.push("/home");
+                    }
+                });
         } else {
-            request.post("/api/user/register", values).then(({ data }) => {
-                const { menuList = [] } = data;
-                if (menuList.length > 0) {
-                    menuStore.setMenuList(menuList);
-                    history.push("/home");
-                }
-            });
+            request
+                .post("/api/user/register", values)
+                .then((response: AxiosResponse<{ menuList: string[] }>) => {
+                    const { menuList = [] } = response.data;
+                    if (menuList.length > 0) {
+                        menuStore.setMenuList(menuList);
+                        history.push("/home");
+                    }
+                });
         }
     };
 

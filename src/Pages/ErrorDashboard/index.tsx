@@ -8,6 +8,7 @@ import { eventWithTime } from "@rrweb/types";
 import RrwebWarp from "./RrwebWarp";
 import * as _ from "lodash";
 import "./index.css";
+import { AxiosResponse } from "axios";
 
 const { Text, Link, Paragraph, Title } = Typography;
 interface TableItem {
@@ -94,8 +95,8 @@ const ErrorDashboard = () => {
     useEffect(() => {
         request
             .post("/api/rrweb/get", { projectName: "qiankun-base" })
-            .then(({ data: _data }) => {
-                const data = _data as ResponseRrwebError[];
+            .then((response: AxiosResponse<ResponseRrwebError[]>) => {
+                const data = response.data;
                 const newSeriesData = xAxisData.map((item) => {
                     const timeStart = dayjs(item).startOf("day").valueOf();
                     const timeEnd = dayjs(item).endOf("day").valueOf();
