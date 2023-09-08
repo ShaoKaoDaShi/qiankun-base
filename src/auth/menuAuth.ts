@@ -14,6 +14,8 @@ function menuAuth() {
     pathArr.shift();
     if (
         location.pathname !== "/home" &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/" &&
         !containTreeItem(pathArr, menuStore.menuList)
     ) {
         return false;
