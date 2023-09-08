@@ -6,6 +6,7 @@ import React from "react";
 const { Header: AntHeader } = Layout;
 import styles from "./index.module.css";
 import logo from "./logo.png";
+import Cookies from "js-cookie";
 interface PropsType {
     collapsed: boolean;
     setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +19,11 @@ const Header = ({ collapsed, setCollapsed }: PropsType) => {
         {
             label: <Link to="/login">退出登录</Link>,
             key: "0",
+            onClick: () => {
+                Object.keys(Cookies.get()).forEach((key) => {
+                    Cookies.remove(key);
+                });
+            },
         },
     ];
     return (
