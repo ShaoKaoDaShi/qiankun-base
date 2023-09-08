@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Button, Layout, theme } from "antd";
 const { Sider, Content, Footer } = Layout;
@@ -19,6 +19,7 @@ import ErrorDashboard from "../../Pages/ErrorDashboard";
 import ErrorListenProjects from "../../Pages/ErrorListenProjects";
 import { AxiosResponse } from "axios";
 import { useHistory } from "react-router-dom";
+import menuAuth from "../../auth/menuAuth";
 
 const PageSkeleton = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -36,25 +37,17 @@ const PageSkeleton = () => {
             .post("/api/menuList", { username: username })
             .then((response: AxiosResponse<{ menuList: MenuItem[] }>) => {
                 menuStore.setMenuList(response.data?.menuList || []);
-
-                function containTreeItem(pathArr: string[], tree = []) {
-                    if (pathArr.length === 0) return true;
-                    const pathItem = pathArr.shift();
-                    for (let i = 0; i < tree.length; i++) {
-                        if (pathItem.includes(tree[i].key)) {
-                            return containTreeItem(pathArr, tree[i].children);
-                        }
-                    }
-                    return false;
-                }
-
-                const pathArr = location.pathname.split("/");
-                pathArr.shift();
-                if (!containTreeItem(pathArr, menuStore.menuList)) {
+                if (!menuAuth()) {
                     history.push("/home");
                 }
             });
     }
+    useEffect(() => {
+        if (!menuStore.initBool) return;
+        if (!menuAuth()) {
+            history.push("/home");
+        }
+    });
     return (
         <Layout style={{ flex: "auto" }}>
             {isLoginPath() || (

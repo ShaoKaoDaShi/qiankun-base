@@ -3,10 +3,10 @@ interface RrwebError {
     projectName: string;
     errorInfo: { message: string; stack: string };
     events: eventWithTime[];
+    timestamp: number;
 }
 interface ResponseRrwebError extends RrwebError {
     isDeal: boolean;
-    timestamp: number;
     projectId: number;
 }
 

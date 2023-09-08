@@ -43,6 +43,7 @@ function errorHandler(e) {
         errorInfo: { message: e.message, stack: e.error.stack },
         events,
         projectName: "qiankun-base",
+        timestamp: new Date().getTime(),
     };
     request.post("/api/rrweb/save", body);
 }

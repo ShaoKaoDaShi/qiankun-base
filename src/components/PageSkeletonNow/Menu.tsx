@@ -7,16 +7,6 @@ import { observer } from "mobx-react-lite";
 import * as _ from "lodash";
 
 let updateNum = 0;
-function containTreeItem(pathArr: string[], tree = []) {
-    if (pathArr.length === 0) return true;
-    const pathItem = pathArr.shift();
-    for (let i = 0; i < tree.length; i++) {
-        if (pathItem.includes(tree[i].key)) {
-            return containTreeItem(pathArr, tree[i].children);
-        }
-    }
-    return false;
-}
 const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
     const [list, setList] = useState(menuList);
     const [selectedKey, setSelectedKey] = useState("");
@@ -41,7 +31,7 @@ const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
         return key;
     };
     useEffect(() => {
-        console.log(location.pathname);
+        console.log("location.pathname", location.pathname, getSelectedKey());
         setSelectedKey(getSelectedKey());
     }, [location.pathname]);
     useEffect(() => {

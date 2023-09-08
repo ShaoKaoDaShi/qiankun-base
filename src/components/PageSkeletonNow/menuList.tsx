@@ -57,7 +57,7 @@ const menuList = [
     {
         key: "errorDashboard",
         icon: <UploadOutlined />,
-        label: "errorDashboard",
+        label: "项目报错详情",
     },
     {
         key: "errorListenProjectList",

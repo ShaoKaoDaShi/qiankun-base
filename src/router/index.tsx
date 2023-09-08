@@ -36,14 +36,6 @@ const Router = () => {
             NProgress.done();
         };
     });
-    if (menuStore.initBool && window.location.pathname !== "/login") {
-        const pathArr = location.pathname.split("/");
-        pathArr.shift();
-
-        if (!containTreeItem(pathArr, menuStore.menuList)) {
-            history.push("/home");
-        }
-    }
 
     return (
         <>
