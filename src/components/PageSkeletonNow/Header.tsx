@@ -35,6 +35,13 @@ const Header = ({ collapsed, setCollapsed }: PropsType) => {
             className={styles.header}
         >
             <Button
+                onClick={() => {
+                    throw new Error("source map test");
+                }}
+            >
+                sourcemap test
+            </Button>
+            <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
