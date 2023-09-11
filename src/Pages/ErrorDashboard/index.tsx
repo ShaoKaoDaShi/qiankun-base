@@ -124,6 +124,7 @@ const ErrorDashboard = () => {
                             );
                             item.count++;
                             item.time = cur.timestamp;
+                            item.detail = cur.errorInfo.stack;
                         }
                         return pre;
                     }, []);
