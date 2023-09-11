@@ -36,7 +36,7 @@ const Header = ({ collapsed, setCollapsed }: PropsType) => {
         >
             <Button
                 onClick={() => {
-                    throw new Error("source map test ");
+                    throw new Error("source map test3 ");
                 }}
             >
                 sourcemap test
