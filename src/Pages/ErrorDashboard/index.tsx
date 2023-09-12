@@ -4,7 +4,6 @@ import * as echarts from "echarts";
 import request from "../../request";
 import dayjs from "dayjs";
 import { ResponseRrwebError, RrwebError } from "../../rrweb/types";
-import { eventWithTime } from "@rrweb/types";
 import RrwebWarp from "./RrwebWarp";
 import * as _ from "lodash";
 import "./index.css";
@@ -17,7 +16,7 @@ interface TableItem {
     time: number;
     detail: string;
     count: number;
-    projectId: number;
+    projectId: string;
 }
 const ErrorDashboard = () => {
     const ref1 = useRef();
@@ -94,7 +93,9 @@ const ErrorDashboard = () => {
     console.log(xAxisData);
     useEffect(() => {
         request
-            .post("/api/rrweb/get", { projectName: "qiankun-base" })
+            .post("/api/rrweb/get", {
+                projectId: "16b6b6b5-1c24-44c1-b7cf-739351c317f6",
+            })
             .then((response: AxiosResponse<ResponseRrwebError[]>) => {
                 const data = response.data;
                 const newSeriesData = xAxisData.map((item) => {

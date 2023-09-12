@@ -42,7 +42,7 @@ function errorHandler(e) {
     const body: RrwebError = {
         errorInfo: { message: e.message, stack: e.error.stack },
         events,
-        projectName: "qiankun-base",
+        projectId: "16b6b6b5-1c24-44c1-b7cf-739351c317f6",
         timestamp: new Date().getTime(),
     };
     request.post("/api/rrweb/save", body);
