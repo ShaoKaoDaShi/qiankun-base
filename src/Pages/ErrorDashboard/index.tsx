@@ -108,7 +108,7 @@ const ErrorDashboard = () => {
                 const getErrorData = (data: ResponseRrwebError[]) => {
                     const map = new Map();
                     return data.reduce<TableItem[]>((pre, cur, index) => {
-                        if (map.get(cur.errorInfo.message) === undefined) {
+                        if (map.get(cur.errorInfo.stack) === undefined) {
                             pre.push({
                                 projectId: cur.projectId,
                                 key: index + "",
@@ -117,10 +117,10 @@ const ErrorDashboard = () => {
                                 detail: cur.errorInfo.stack,
                                 count: 1,
                             });
-                            map.set(cur.errorInfo.message, 1);
+                            map.set(cur.errorInfo.stack, 1);
                         } else {
                             const item = pre.find(
-                                (item) => item.type === cur.errorInfo.message,
+                                (item) => item.detail === cur.errorInfo.stack,
                             );
                             item.count++;
                             item.time = cur.timestamp;
