@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Card, Table, Typography, Button, Modal } from "antd";
+import { Card, Table, Typography, Button, Modal, Space } from "antd";
 import * as echarts from "echarts";
 import request from "../../request";
 import dayjs from "dayjs";
@@ -22,6 +22,7 @@ const ErrorDashboard = () => {
     const ref1 = useRef();
     const [seriesData, setSeriesData] = useState<number[]>([]);
     const [errorData, setErrorData] = useState<TableItem[]>([]);
+    const [updateTableData, setUpdateTableData] = useState({});
     const columns = useMemo(() => {
         return [
             {
@@ -51,29 +52,62 @@ const ErrorDashboard = () => {
                 key: "count",
                 render: (text: string, record: TableItem) => {
                     return (
-                        <Button
-                            type="primary"
-                            size="small"
-                            onClick={() => {
-                                Modal.error({
-                                    title: (
-                                        <Text underline type="danger">
-                                            {record.type}
-                                        </Text>
-                                    ),
-                                    content: (
-                                        <RrwebWarp
-                                            projectId={record.projectId}
-                                            message={record.type}
-                                        />
-                                    ),
-                                    okText: "关闭",
-                                    width: 920,
-                                });
-                            }}
-                        >
-                            错误回放
-                        </Button>
+                        <Space>
+                            <Button
+                                type="primary"
+                                size="small"
+                                onClick={() => {
+                                    Modal.error({
+                                        title: (
+                                            <Text underline type="danger">
+                                                {record.type}
+                                            </Text>
+                                        ),
+                                        content: (
+                                            <RrwebWarp
+                                                projectId={record.projectId}
+                                                stack={record.detail}
+                                            />
+                                        ),
+                                        okText: "关闭",
+                                        width: 920,
+                                    });
+                                }}
+                            >
+                                错误回放
+                            </Button>
+                            <Button
+                                type="primary"
+                                danger
+                                size="small"
+                                onClick={() => {
+                                    console.log("已解决");
+                                    Modal.confirm({
+                                        title: "bug 已解决",
+                                        content: "这将更改或删除这个error记录",
+                                        okText: "确认",
+                                        cancelText: "取消",
+                                        onOk: () => {
+                                            request
+                                                .post(
+                                                    "/api/rrweb/updateErrorStatus",
+                                                    {
+                                                        projectId:
+                                                            record.projectId,
+                                                        stack: record.detail,
+                                                        isDeal: true,
+                                                    },
+                                                )
+                                                .then((res) => {
+                                                    setUpdateTableData({});
+                                                });
+                                        },
+                                    });
+                                }}
+                            >
+                                已解决
+                            </Button>
+                        </Space>
                     );
                 },
             },
@@ -134,7 +168,7 @@ const ErrorDashboard = () => {
                 setErrorData(errorData);
                 setSeriesData(newSeriesData);
             });
-    }, []);
+    }, [updateTableData]);
     useEffect(() => {
         if (seriesData.length < 1) return;
         const myChart = echarts.init(ref1.current);

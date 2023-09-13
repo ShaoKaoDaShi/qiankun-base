@@ -5,12 +5,12 @@ import { ResponseRrwebError } from "../../rrweb/types";
 import { Skeleton } from "antd";
 import { AxiosResponse } from "axios";
 
-const RrwebWarp = ({ projectId, message }) => {
+const RrwebWarp = ({ projectId, stack }) => {
     const [loading, setLoading] = useState(true);
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
         request
-            .post("/api/rrweb/getEventsFromErrors", { projectId, message })
+            .post("/api/rrweb/getEventsFromErrors", { projectId, stack })
             .then((response: AxiosResponse<ResponseRrwebError>) => {
                 setLoading(false);
                 const data = response.data;

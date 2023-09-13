@@ -10,7 +10,6 @@ import TimerView from "../Timer";
 import myTimer from "../../store/timer";
 import Menu from "./Menu";
 import Header from "./Header";
-import Dashboard from "../../Pages/Dashboard";
 import menuStore, { MenuItem } from "../../store/menuStore";
 import request from "../../request";
 import Cookies from "js-cookie";
@@ -71,7 +70,6 @@ const PageSkeleton = () => {
                             }}
                         >
                             <Route path="/home" component={Home} />
-                            <Route path="/dashboard" component={Dashboard} />
                             <Route path="/rrweb" component={Rrweb} />
                             <Route
                                 path="/errorDashboard"
