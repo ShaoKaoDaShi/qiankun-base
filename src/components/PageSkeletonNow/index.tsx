@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 import Rrweb from "../../Pages/Rrweb";
 import ErrorDashboard from "../../Pages/ErrorDashboard";
 import ErrorListenProjects from "../../Pages/ErrorListenProjects";
+import UploadSourceMap from "../../Pages/UploadSourceMap";
 import { AxiosResponse } from "axios";
 import { useHistory } from "react-router-dom";
 import menuAuth from "../../auth/menuAuth";
@@ -78,6 +79,10 @@ const PageSkeleton = () => {
                             <Route
                                 path="/errorListenProjectList"
                                 component={ErrorListenProjects}
+                            />
+                            <Route
+                                path="/uploadSourceMap"
+                                component={UploadSourceMap}
                             />
                             <div id="container"></div>
                         </Content>

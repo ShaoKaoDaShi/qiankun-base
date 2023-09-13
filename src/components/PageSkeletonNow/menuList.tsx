@@ -64,5 +64,10 @@ const menuList = [
         icon: <UploadOutlined />,
         label: "监控项目列表",
     },
+    {
+        key: "uploadSourceMap",
+        icon: <UploadOutlined />,
+        label: "上传sourceMap文件",
+    },
 ];
 export default menuList;
