@@ -38,6 +38,7 @@ const ErrorDashboard = () => {
                 render: (text: string) => {
                     return dayjs(text).format("YYYY/MM/DD HH:mm:ss");
                 },
+                sorter: (a, b) => b.time - a.time,
             },
             {
                 title: "错误次数",

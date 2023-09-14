@@ -35,13 +35,6 @@ const Header = ({ collapsed, setCollapsed }: PropsType) => {
             className={styles.header}
         >
             <Button
-                onClick={() => {
-                    throw new Error("source map test3 ");
-                }}
-            >
-                sourcemap test
-            </Button>
-            <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
@@ -51,6 +44,13 @@ const Header = ({ collapsed, setCollapsed }: PropsType) => {
                     height: 64,
                 }}
             />
+            <Button
+                onClick={() => {
+                    throw new Error("throw an error");
+                }}
+            >
+                throw an error
+            </Button>
             <Dropdown menu={{ items }} trigger={["click"]} placement="bottom">
                 <Avatar src={logo} />
             </Dropdown>

@@ -80,6 +80,9 @@ const ErrorListenProjects = () => {
                     <Form.Item name="url" label="WebHook URL">
                         <Input />
                     </Form.Item>
+                    <Form.Item name="keyword" label="WebHook keyword">
+                        <Input />
+                    </Form.Item>
                 </Form>
             </Drawer>
         </Layout>

@@ -8,14 +8,18 @@ import "./request/index";
 import Router from "./router";
 import "./rrweb";
 import "./index.css";
+import { ConfigProvider } from "antd";
+import zhCN from "antd/locale/zh_CN";
 // import './sentry'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-    <BrowserRouter>
-        <Router />
-    </BrowserRouter>,
+    <ConfigProvider locale={zhCN}>
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
+    </ConfigProvider>,
 );
 
 console.log(process.env.not_qiankun);
