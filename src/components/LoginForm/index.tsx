@@ -31,6 +31,7 @@ const LoginForm: React.FC = () => {
                 .then((response: AxiosResponse<{ errMsg: string }>) => {
                     if (response.data.errMsg) return;
                     history.push("/home");
+                    menuStore.setInitBool(false);
                 });
         } else {
             request
@@ -38,6 +39,7 @@ const LoginForm: React.FC = () => {
                 .then((response: AxiosResponse<{ errMsg: string }>) => {
                     if (response.data.errMsg) return;
                     history.push("/home");
+                    menuStore.setInitBool(false);
                 });
         }
     };
