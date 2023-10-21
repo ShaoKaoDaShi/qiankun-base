@@ -24,10 +24,10 @@
         "rrweb-player": "^1.0.0-alpha.4"
     },
     "scripts": {
-        "start": "vite",
+        "start": "vite --host",
         "build": "vite build",
         "preview": "vite preview",
-        "start:base": "cross-env BASE_ENV=true vite",
+        "start:base": "cross-env BASE_ENV=true vite --host",
         "build:base": "cross-env BASE_ENV=true vite build",
         "build:sourcemap": "cross-env SOURCE_MAP=true vite build",
         "preview:base": "cross-env BASE_ENV=true vite preview",
