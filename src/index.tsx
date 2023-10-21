@@ -11,6 +11,8 @@ import "./index.css";
 import { ConfigProvider } from "antd";
 import zhCN from "antd/locale/zh_CN";
 // import './sentry'
+import "./utils/zijiewb";
+import "./utils/1";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

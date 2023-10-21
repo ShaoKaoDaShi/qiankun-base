@@ -19,15 +19,19 @@
         "qiankun": "^2.10.11",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-draggable": "^4.4.6",
+        "react-resizable": "^3.0.5",
         "react-router-dom": "^5.3.4",
         "rrweb": "^2.0.0-alpha.4",
-        "rrweb-player": "^1.0.0-alpha.4"
+        "rrweb-player": "^1.0.0-alpha.4",
+        "socket.io-client": "^4.7.2",
+        "webcamjs": "^1.0.26"
     },
     "scripts": {
         "start": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "start:base": "cross-env BASE_ENV=true vite",
+        "start:base": "cross-env BASE_ENV=true vite --host=192.168.1.183",
         "build:base": "cross-env BASE_ENV=true vite build",
         "build:sourcemap": "cross-env SOURCE_MAP=true vite build",
         "preview:base": "cross-env BASE_ENV=true vite preview",

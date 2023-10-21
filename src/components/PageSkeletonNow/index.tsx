@@ -13,13 +13,15 @@ import Header from "./Header";
 import menuStore, { MenuItem } from "../../store/menuStore";
 import request from "../../request";
 import Cookies from "js-cookie";
+import { AxiosResponse } from "axios";
+import { useHistory } from "react-router-dom";
+import menuAuth from "../../auth/menuAuth";
+// pages
 import Rrweb from "../../Pages/Rrweb";
 import ErrorDashboard from "../../Pages/ErrorDashboard";
 import ErrorListenProjects from "../../Pages/ErrorListenProjects";
 import UploadSourceMap from "../../Pages/UploadSourceMap";
-import { AxiosResponse } from "axios";
-import { useHistory } from "react-router-dom";
-import menuAuth from "../../auth/menuAuth";
+import LowCodeEditor from "../../Pages/LowCodeEditor";
 
 const PageSkeleton = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -68,6 +70,7 @@ const PageSkeleton = () => {
                                 minHeight: 280,
                                 background: colorBgContainer,
                                 overflow: "scroll",
+                                display: "flex",
                             }}
                         >
                             <Route path="/home" component={Home} />
@@ -83,6 +86,10 @@ const PageSkeleton = () => {
                             <Route
                                 path="/uploadSourceMap"
                                 component={UploadSourceMap}
+                            />
+                            <Route
+                                path="/lowCodeEditor"
+                                component={LowCodeEditor}
                             />
                             <div id="container"></div>
                         </Content>

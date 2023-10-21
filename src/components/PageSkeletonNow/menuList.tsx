@@ -69,5 +69,10 @@ const menuList = [
         icon: <UploadOutlined />,
         label: "上传sourceMap文件",
     },
+    {
+        key: "lowCodeEditor",
+        icon: <UploadOutlined />,
+        label: "低代码编辑器",
+    },
 ];
 export default menuList;
