@@ -28,10 +28,10 @@
         "webcamjs": "^1.0.26"
     },
     "scripts": {
-        "start": "vite",
+        "start": "vite --host",
         "build": "vite build",
         "preview": "vite preview",
-        "start:base": "cross-env BASE_ENV=true vite --host=192.168.1.183",
+        "start:base": "cross-env BASE_ENV=true vite --host",
         "build:base": "cross-env BASE_ENV=true vite build",
         "build:sourcemap": "cross-env SOURCE_MAP=true vite build",
         "preview:base": "cross-env BASE_ENV=true vite preview",
