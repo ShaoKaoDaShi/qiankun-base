@@ -13,9 +13,9 @@ const LowCodeEditor = () => {
         return buttonList.map((item, index) => {
             return (
                 <Draggable key={index}>
-                    <Resizable>
-                        <Button style={{ transition: "none" }}>button</Button>
-                    </Resizable>
+                    {/* <Resizable width={20} height={40}> */}
+                    <Button style={{ transition: "none" }}>button</Button>
+                    {/* </Resizable> */}
                 </Draggable>
             );
         });
@@ -62,7 +62,7 @@ const LowCodeEditor = () => {
                             borderRadius: "4px",
                         }}
                     >
-                        {/* {renderButtonList()} */}
+                        {renderButtonList()}
                         编辑器区
                         <div>123123</div>
                     </Col>
