@@ -122,18 +122,18 @@ function objToUrl(obj) {
 }
 
 // 调用参考
-const url = "https://www.douyin.com/abc?foo=1&bar=2";
-const urlObj = urlToObj(url);
-console.log(urlObj);
-// 输出
-// {
-//     path: 'https://www.douyin.com/abc',
-//     query: {
-//         foo: '1',
-//         bar: '2'
-//     }
-// }
-urlObj.query.coo = "3";
-const newUrl = objToUrl(urlObj);
-console.log(newUrl);
+// const url = "https://www.douyin.com/abc?foo=1&bar=2";
+// const urlObj = urlToObj(url);
+// console.log(urlObj);
+// // 输出
+// // {
+// //     path: 'https://www.douyin.com/abc',
+// //     query: {
+// //         foo: '1',
+// //         bar: '2'
+// //     }
+// // }
+// urlObj.query.coo = "3";
+// const newUrl = objToUrl(urlObj);
+// console.log(newUrl);
 // 输出 https://www.douyin.com/abc?foo=1&bar=2&coo=3

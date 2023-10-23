@@ -39,8 +39,9 @@ function errorHandler(e) {
     if (events.length > 100) {
         events = events.slice(events.length - 100);
     }
+    console.log("error==", e);
     const body: RrwebError = {
-        errorInfo: { message: e.message, stack: e.error.stack },
+        errorInfo: { message: e.message, stack: e.error?.stack },
         events,
         projectId: "16b6b6b5-1c24-44c1-b7cf-739351c317f6",
         timestamp: new Date().getTime(),

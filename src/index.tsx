@@ -24,7 +24,7 @@ root.render(
     </ConfigProvider>,
 );
 
-console.log(process.env.not_qiankun);
+// console.log(process.env.not_qiankun);
 if (!process.env.not_qiankun) {
     console.log(process.env.not_qiankun);
     start();

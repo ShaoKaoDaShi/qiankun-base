@@ -6,15 +6,12 @@ import { MenuStore } from "../../store/menuStore";
 import { observer } from "mobx-react-lite";
 import * as _ from "lodash";
 
-let updateNum = 0;
 const Menu = observer<{ menuStore: MenuStore }>(({ menuStore }) => {
     const [list, setList] = useState(menuList);
     const [selectedKey, setSelectedKey] = useState("");
     const location = useLocation();
     const history = useHistory();
-    useEffect(() => {
-        console.log(++updateNum, menuStore.initBool);
-    });
+
     async function historyGo(key: string) {
         history.push(`/${key}`);
     }

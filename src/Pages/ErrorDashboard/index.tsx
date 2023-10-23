@@ -10,6 +10,7 @@ import "./index.css";
 import { AxiosResponse } from "axios";
 
 const { Text, Link, Paragraph, Title } = Typography;
+let myChart = null;
 interface TableItem {
     key: string;
     type: string;
@@ -172,7 +173,7 @@ const ErrorDashboard = () => {
     }, [updateTableData]);
     useEffect(() => {
         if (seriesData.length < 1) return;
-        const myChart = echarts.init(ref1.current);
+        myChart = echarts.init(ref1.current);
 
         const option = {
             tooltip: {
