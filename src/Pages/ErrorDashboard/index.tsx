@@ -239,7 +239,7 @@ const ErrorDashboard = () => {
     }, [seriesData]);
 
     return (
-        <Card title="错误统计" bordered={false}>
+        <Card title="错误统计" bordered={false} style={{ flex: "1" }}>
             <div
                 ref={ref1}
                 style={{ height: "300px", marginBottom: "15px" }}

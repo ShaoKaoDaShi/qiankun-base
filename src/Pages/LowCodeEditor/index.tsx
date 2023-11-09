@@ -3,6 +3,7 @@ import { Button, Col, Layout, Row, Space, theme } from "antd";
 import Draggable from "react-draggable";
 import { Resizable } from "react-resizable";
 import VideoChat from "../VideoChat";
+import Tree from "./Tree";
 
 const LowCodeEditor = () => {
     const [buttonList, setButtonList] = useState([]);
@@ -62,9 +63,11 @@ const LowCodeEditor = () => {
                             borderRadius: "4px",
                         }}
                     >
-                        {renderButtonList()}
+                        {/* {renderButtonList()}
                         编辑器区
-                        <div>123123</div>
+                        <div>123123</div> */}
+
+                        <Tree />
                     </Col>
                     <Draggable>
                         <Col
